@@ -22,6 +22,8 @@ You can easily connect to the Prometheus UI by leveraging the port-forwarding me
 ```bash
 kubectl port-forward svc/sys-prometheus -n pf9-monitoring 9090:9090
 ```
+![Screenshot] https://github.com/platform9/pmk-k8-yaml/blob/master/monitoring/alertmanager/screenshots/Prometheus-UI.png
+
 You can review the out of the box alert rules by going to the Alerts page.  You will notice that there is one active Watchdog alert. This is an alert meant to ensure that the entire alerting pipeline is functional. This alert is always firing, therefore it should always be firing in AlertManager and always fire against a receiver. This is very convenient in case you want to test integrations with Slack, PagerDuty, email and others.
 
 The steps we need to follow in order to integrate AlertManager with Slack are:
@@ -36,6 +38,7 @@ I created a dedicated Slack channel named: alerts-pmk-freedom
 
 ## Grab the Slack WebHook URL
 In the Slack administration settings you can create an incoming WebHook. This will generate a WebHook URL which you will need in the AlertManager template. 
+![Screenshot] https://github.com/platform9/pmk-k8-yaml/blob/master/monitoring/alertmanager/screenshots/Slack.png
 
 ## Create an AlertManager template
 Create a new file (name is not important) where we will configure the Slack AlertManager template. For example: *alertmanager.yaml*
@@ -87,4 +90,4 @@ kubectl -n pf9-monitoring edit secret alertmanager-sysalert -o yaml
 ```
 
 ## Review Alert Configuration and Slack notifications
-
+![Screenshot] https://github.com/platform9/pmk-k8-yaml/blob/master/monitoring/alertmanager/screenshots/Slack-result.png
