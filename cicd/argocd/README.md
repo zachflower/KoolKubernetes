@@ -125,12 +125,8 @@ Cluster 'https://<<IP API Server>>' added
 ## Result
 ![argo-clusters](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-clusters.png)
 
-![pmkft-clusters](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/pmkft-clusters.png)
-
 ![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-login.png)
 
 ![argo-status](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-status.png)
 
 ![argo-apps](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-apps.png)
-
-![pmkft-pods](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/pmkft-pods.png)
