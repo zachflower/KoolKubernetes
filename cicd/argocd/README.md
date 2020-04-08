@@ -76,7 +76,7 @@ kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut
 ```
 You can now logon to the Argo CD UI with the `retrieved` password and the `admin` user
 
-![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-login.png)
+![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-login.png)
 
 You can change the auto-generated password using the argocd CLI
 ```bash
@@ -123,10 +123,10 @@ Cluster 'https://<<IP API Server>>' added
 ```
 
 ## Result
-![argo-clusters](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-clusters.png)
+![argo-clusters](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-clusters.png)
 
-![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-login.png)
+![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-login.png)
 
-![argo-status](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-status.png)
+![argo-status](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-status.png)
 
-![argo-apps](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argo/images/argo-apps.png)
+![argo-apps](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-apps.png)
