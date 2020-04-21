@@ -22,5 +22,4 @@ spec:
   resources:
   storage: 
     useAllNodes: true
-    useAllDevices: false
-    deviceFilter: ^sd[b-z]
+    useAllDevices: true
