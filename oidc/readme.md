@@ -2,7 +2,7 @@
 
 # Integrating KeyCloak for Identity Management with PMK
 
-## Prerequisites - 
+### Prerequisites - 
 
 Keycloak running within a VM. 
 
@@ -145,7 +145,7 @@ keystore-password= *password selecter earlier*
 
 key-password= *key password selected earlier*
 
-## Configuring  and Starting the KeyCloak server 
+### Configuring  and Starting the KeyCloak server 
  
 
 1. Add an admin user by the browsing to the location 
@@ -292,7 +292,7 @@ Also, ensure that email field for the pf9 user has been populated and the email_
  ( NOTE: You can repeat group creation steps where you create an additional group. Create an additional user and attach that user to the respective group.)   
 
 
-## Changing API server flags ( For PMKFT and PMK clusters) 
+### Changing API server flags ( For PMKFT and PMK clusters) 
  
 
 Here are the API server flags that need to be added for OIDC authentication to work. 
@@ -332,7 +332,7 @@ Let the above command complete, and then issue the following command -
  
 
 
-## Using KubeLogin as OIDC Plugin for kubectl
+### Using KubeLogin as OIDC Plugin for kubectl
  
 
 On a Linux machine, run the following command to install kubelogin binary. 
@@ -361,8 +361,8 @@ Run the following command to ensure that OIDC authentication via KeyCloak is suc
 You would get a set of instructions once the authentication is successful which includes Creating a cluster role, setting up API server flags, etc. 
 
 Let’s create a cluster role binding as per the instructions you get from the above command.  Here’s an example for a cluster-admin  Cluster role binding
-`
 
+```bash
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -374,7 +374,7 @@ roleRef:
 subjects:
 - kind: Group
   name: oidc:/cluster-admins
-`
+```
 ( You can create additional ClusterRolebindings  associated with individual groups and replace the   subject: name field in the  above YAML) 
 
 Lastly, set up the kubeconfig file to reflect the following values - 
