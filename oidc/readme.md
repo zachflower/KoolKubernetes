@@ -92,7 +92,7 @@ alias= *alias selected earlier*
 key-password =  *key password selected earlier*
 
 
-### Third-Party CA Certificate
+### Third-Party CA Certificate (Optional if using Self-Signed Certificates)
  
 
  1. Run the following command to generate a CSR -  
@@ -167,7 +167,7 @@ key-password= *key password selected earlier*
 
 4. Login to the management console using the pf9 user credentials created earlier.  Create a client  by Clicking on the Clients tab in the right pane  ( You can also choose to create a new realm and then create a client )
 
-![Keycloak-client] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/keycloak-clients.png)
+![Keycloak-client](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/keycloak-clients.png)
 
 5. After creating the Client, configure the client by clicking on it and set the following properties as seen in the screenshot 
 ```Enabled → On
@@ -188,7 +188,7 @@ Authorization → Enabled
 
 Redirect_URI : urn:ietf:wg:oauth:2.0:oob
 ```
-![Keycloak_clients_2] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Keycloak_clients_2.png)
+![Keycloak_clients_2](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Keycloak_clients_2.png)
 
 
 6. Go to the Credentials sub-tab and ensure that Secret value is populated. If not, click on Regenerate Secret and store it for further use. 
@@ -214,7 +214,7 @@ Add to access token: Enabled
 Add to userinfo: Enabled
 ```
  
-![mapper_email] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_mapper.png)
+![mapper_email](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_mapper.png)
     
    b.  username
 
@@ -237,7 +237,7 @@ Add to userinfo: Enabled
 ```
  
 
-![mapper_username] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/username_mapper.png)
+![mapper_username](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/username_mapper.png)
 
  
 
@@ -262,7 +262,7 @@ Add to userinfo: Enabled
 Full Group Path: Enabled
 ```
  
-![mapper_groups] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/groups_mapper.png)
+![mapper_groups](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/groups_mapper.png)
 
 
 
@@ -273,19 +273,19 @@ Full Group Path: Enabled
 Create a group by Clicking Groups under the Manage section in the right pane. Name the group as cluster-admins. 
 
  
-![group_creation] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/group_creation.png)
+![group_creation](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/group_creation.png)
 
  
 
 9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the right pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
 
 
-![pf9_user] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
+![pf9_user](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
 
 Also, ensure that email field for the pf9 user has been populated and the email_verified flag has been set. 
 
 
-![email_verified] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_verified.png)
+![email_verified](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_verified.png)
 
 
 
