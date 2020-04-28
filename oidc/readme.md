@@ -23,7 +23,7 @@ KeyCloak can be implemented in a standalone mode for testing. For production use
  
 
 
-## CERTIFICATE GENERATION STEPS
+### CERTIFICATE GENERATION STEPS
 
 Step 1 is common for both the self-signed certs as well as for the third-party CA certificate
 
