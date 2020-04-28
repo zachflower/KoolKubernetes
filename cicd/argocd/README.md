@@ -54,7 +54,7 @@ brew install argoproj/tap/argocd
 ```
 By default, the Argo CD API server is not exposed with an external IP. To access the API server, choose one of the following techniques to expose the Argo CD API server:
 
-### 1. Service Type Load Balancer¶
+### 1. Service Type Load Balancer
 Change the argocd-server service type to `LoadBalancer`:
 ```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
@@ -76,7 +76,7 @@ kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut
 ```
 You can now logon to the Argo CD UI with the `retrieved` password and the `admin` user
 
-![argo-login](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-login.png)
+![argo-login](https://github.com/platform9/KoolKubernetes/blob/master/cicd/argocd/images/argo-login.png)
 
 You can change the auto-generated password using the argocd CLI
 ```bash
@@ -101,6 +101,9 @@ Password updated
 
 ## *Optional: Add  your remote Kubernetes cluster(s) to ArgoCD*
 
+### kubectx
+In the below example we're using Kubectx which is a nice addon to easily switch between clusters back and forth. You can find  [here](https://github.com/ahmetb/kubectx) more information about Kubectx
+
 List all cluster contexts that are currently loaded
 ```
 kubectx
@@ -122,9 +125,11 @@ INFO[0001] ClusterRoleBinding "argocd-manager-role-binding" created
 Cluster 'https://<<IP API Server>>' added
 ```
 
+
+
 ## Result
-![argo-clusters](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-clusters.png)
+![argo-clusters](https://github.com/platform9/KoolKubernetes/blob/master/cicd/argocd/images/argo-clusters.png)
 
-![argo-status](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-status.png)
+![argo-status](https://github.com/platform9/KoolKubernetes/blob/master/cicd/argocd/images/argo-status.png)
 
-![argo-apps](https://github.com/platform9/pmk-k8-yaml/blob/master/cicd/argocd/images/argo-apps.png)
+![argo-apps](https://github.com/platform9/KoolKubernetes/blob/master/cicd/argocd/images/argo-apps.png)
