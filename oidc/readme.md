@@ -29,8 +29,11 @@ Step 1 is common for both the self-signed certs as well as for the third-party C
 
 SSH to the Keycloak VM 
 
-Run the following command to create a Keystore - 
+1. Run the following command to create a Keystore - 
+
+```bash 
 keytool -genkeypair -keystore keystore.jks -dname "CN=localhost, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown" -keypass keystore -storepass keystore -keyalg RSA -alias localhost -ext SAN=ip:<IP_address_of Keycloak instance>
+```
 (IP address should have IP of at least one interface, can have multiple IP:<ip_address pairs>)    
 
 Explanation of the arguments in the above command -  
@@ -55,28 +58,20 @@ storepass - The password for the whole KeyStore. Anyone who wants to open this K
 
 ### Self-Signed Certificate
 
-Extract the certificate from the Keystore generated in the above command ( This will be passed to the  kube-apiserver in the later steps) 
+2. Extract the certificate from the Keystore generated in the above command ( This will be passed to the  kube-apiserver in the later steps) 
        
 
 ```bash
 keytool -export -alias localhost -keystore keystore.jks -rfc -file public.cert
 ```
 
-Add the generated KeyStore to KeyCloak Configuration
-  Copy the keystore.jks to the location `keycloak_download_location/standalone/configuration`
+3. Add the generated KeyStore to KeyCloak Configuration
+   Copy the keystore.jks to the location `keycloak_download_location/standalone/configuration`
 
 
 Edit the standalone.xml or standalone-ha.xml depending on the type of the installation. Edit the SSL section under the security-realm sections. 
 
 
-Update the following values depending on the values set above - 
-keystore path = *name of the Java keystore in the above command* 
-
-keystore-password = *password selected earlier*
-
-  alias= *alias selected earlier*
-
-key-password =  *key password selected earlier*
 
 `
       <server-identities>
@@ -87,27 +82,37 @@ key-password =  *key password selected earlier*
 `
  
 
+Update the following values depending on the values set above - 
+keystore path = *name of the Java keystore in the above command* 
 
-###Third-Party CA Certificate
+keystore-password = *password selected earlier*
+
+alias= *alias selected earlier*
+
+key-password =  *key password selected earlier*
+
+
+### Third-Party CA Certificate
  
 
- Run the following command to generate a CSR -  
+ 1. Run the following command to generate a CSR -  
 ```bash
 keytool -certreq -alias unknown -keystore keystore.jks -ext SAN=ip:<ip_address>  > keycloak.careq
 ```
 
-Get the CSR signed with the third-party CA and ensure you have a copy of the CA certificate as well. 
+2. Get the CSR signed with the third-party CA and ensure you have a copy of the CA certificate as well. 
 
-Add the Signed Certificate and the CA certificate to the KeyStore 
+3. Add the Signed Certificate and the CA certificate to the KeyStore 
 
-Copy the signed certificate and the CA certificate to the same folder where the Keystore was generated in the first sub-section. 
-
-Run the following command to import the CA certificate in the keystore - 
+    i. Copy the signed certificate and the CA certificate to the same folder where the Keystore was generated in the first sub-section. 
+    
+    ii. Run the following command to import the CA certificate in the keystore - 
 ```bash
 keytool -import -keystore keystore.jks -file <CA.crt>  -alias CAroot
 ```
 
-Run the following command to import the signed certificate in the keystore 
+   iii. Run the following command to import the signed certificate in the keystore 
+
 ```bash
 keytool -import -alias unknown  -keystore keystore.jks -file <signed.crt>
 ```
@@ -115,21 +120,13 @@ keytool -import -alias unknown  -keystore keystore.jks -file <signed.crt>
 ( alias has to be the same that was earlier used in the first section) 
 
 
-Add the generated KeyStore to KeyCloak Configuration
+4.  Add the generated KeyStore to KeyCloak Configuration
+  
   Copy the keystore.jks to the location `keycloak_download_location/standalone/configuration`
 
 
 Edit the standalone.xml (standalone-mode)  or standalone-ha.xml (clustered mode) depending on the type of the installation. Edit the SSL section under the security-realm sections. 
 
-
-Update the following values depending on the values set above - 
-keystore path = *name of the Java keystore*. 
-
-keystore-password= *password selecter earlier*
-
-  alias= *alias selected earlier*
-
-key-password= *key password selected earlier*
 `
       <server-identities>
                 <ssl>
@@ -138,32 +135,41 @@ key-password= *key password selected earlier*
             </server-identities>
 `
 
+Update the following values depending on the values set above - 
+
+keystore path = *name of the Java keystore*. 
+
+keystore-password= *password selecter earlier*
+
+  alias= *alias selected earlier*
+
+key-password= *key password selected earlier*
 
 ## Configuring  and Starting the KeyCloak server 
  
 
-Add an admin user by the browsing to the location 
+1. Add an admin user by the browsing to the location 
  `cd keycloak_download_location/bin` and running the command - 
 ```bash
 ./add-user-keycloak.sh -u pf9 
 ```
 
-Start the KeyCloak server from the same location  -  
+2. Start the KeyCloak server from the same location  -  
 ```bash
 ./standalone.sh  -b <interface_ip> &
 ```
 
-Ensure that you are able to reach the KeyCloak server on the  interface ( or floating IP)
+3. Ensure that you are able to reach the KeyCloak server on the  interface ( or floating IP)
 
 `https://interface_ip:8443`
 
  
 
-Login to the management console using the pf9 user credentials created earlier.  Create a client  by Clicking on the Clients tab in the right pane  ( You can also choose to create a new realm and then create a client )
+4. Login to the management console using the pf9 user credentials created earlier.  Create a client  by Clicking on the Clients tab in the right pane  ( You can also choose to create a new realm and then create a client )
 
 ![Keycloak-client] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/keycloak-clients.png)
 
-1. After creating the Client, configure the client by clicking on it and set the following properties as seen in the screenshot 
+5. After creating the Client, configure the client by clicking on it and set the following properties as seen in the screenshot 
 ```Enabled → On
 
 Client-Protocol → openid-connect
@@ -185,12 +191,11 @@ Redirect_URI : urn:ietf:wg:oauth:2.0:oob
 ![Keycloak_clients_2] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Keycloak_clients_2.png)
 
 
-Go to the Credentials sub-tab and ensure that Secret value is populated. If not, click on Regenerate Secret and store it for further use. 
+6. Go to the Credentials sub-tab and ensure that Secret value is populated. If not, click on Regenerate Secret and store it for further use. 
 
-Click on Mappers sub-tab and create the following mappings. 
+7. Click on Mappers sub-tab and create the following mappings. 
 
-
-a. email 
+    a. email 
 
 ```Name: email 
 
@@ -210,12 +215,9 @@ Add to userinfo: Enabled
 ```
  
 ![mapper_email] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_mapper.png)
+    
+   b.  username
 
-
- 
-`
-
-b.  username
 
 ```Name: username 
 
@@ -266,30 +268,31 @@ Full Group Path: Enabled
 
  
 
-Using these mappers, attributes like Groups ( that would be mapped to cluster-role bindings in K8s RBAC) and the username and email specified during login will be verified. 
+8. Using these mappers, attributes like Groups ( that would be mapped to cluster-role bindings in K8s RBAC) and the username and email specified during login will be verified. 
 
- 
-
- Create a group by Clicking Groups under the Manage section in the right pane. Name the group as cluster-admins. 
+Create a group by Clicking Groups under the Manage section in the right pane. Name the group as cluster-admins. 
 
  
 ![group_creation] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/group_creation.png)
 
  
 
-Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the right pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
+9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the right pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
 
 
 ![pf9_user] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
- 
 
 Also, ensure that email field for the pf9 user has been populated and the email_verified flag has been set. 
+
+
+![email_verified] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_verified.png)
+
 
 
  ( NOTE: You can repeat group creation steps where you create an additional group. Create an additional user and attach that user to the respective group.)   
 
 
-##Changing API server flags ( For PMKFT and PMK clusters) 
+## Changing API server flags ( For PMKFT and PMK clusters) 
  
 
 Here are the API server flags that need to be added for OIDC authentication to work. 
@@ -302,7 +305,7 @@ SSH to the master server.
 
 `cd /opt/pf9/pf9-kube/conf/masterconfig/base`
 
-  1. copy the CA certificate (public.crt generated in the Cert generation step in case of Self-Signed cert) on each master and save it at - /etc/pf9/kube.d/authn
+  1. copy the CA certificate (public.crt generated in the Cert generation step in case of Self-Signed cert) on each master and save it at - /etc/pf9/kube.d/authn ( Keep an additional copy of this on each masters as well)
 
   2.  Edit the master.yaml and add the following lines under the section command for the apiserver container. 
 ```bash
@@ -329,7 +332,7 @@ Let the above command complete, and then issue the following command -
  
 
 
-Using KubeLogin as OIDC Plugin for kubectl
+## Using KubeLogin as OIDC Plugin for kubectl
  
 
 On a Linux machine, run the following command to install kubelogin binary. 
@@ -376,9 +379,9 @@ subjects:
 
 Lastly, set up the kubeconfig file to reflect the following values - 
 
-    a. Set user as oidc for the default context
+  a. Set user as oidc for the default context
 
-    b. Set the oidc user under the users section in the kubeconfig to reflect the following values. 
+  b. Set the oidc user under the users section in the kubeconfig to reflect the following values. 
    
 
 For Linux Users, kubeconfig should look like the below configuration and edit the relevant context to reflect the oidc user. 
