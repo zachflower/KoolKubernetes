@@ -1,6 +1,6 @@
 
 
-# Integrating KeyCloak for Identity Management with PMK
+# Integrating KeyCloak for Identity Management with PMK/PMKFT
 
 ### Prerequisites - 
 
