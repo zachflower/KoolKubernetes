@@ -10,14 +10,17 @@ You can deploy a Keycloak server using these set of instructions.
 
 Deploy a CentOS 7.x machine and install Java SDK8 as its a prerequisite for KeyCloak - 
 ```bash
-yum install java-1.8.0-openjdk
+yum -y install java-1.8.0-openjdk
+yum -y install wget
 ```
 Download the Keycloak server binary by running the following command - 
 ```bash
+cd /opt
 wget https://downloads.jboss.org/keycloak/9.0.3/keycloak-9.0.3.tar.gz
 ```
 Extract the archive and browse to that directory `<KeyCloak_directory>/standalone/configuration`
-
+```tar -xvf ./keycloak-9.0.3.tar.gz 
+```
 
 KeyCloak can be implemented in a standalone mode for testing. For production use-cases, a Clustered KeyCloak implementation is recommended.  
  
