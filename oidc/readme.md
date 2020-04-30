@@ -19,8 +19,7 @@ cd /opt
 wget https://downloads.jboss.org/keycloak/9.0.3/keycloak-9.0.3.tar.gz
 ```
 Extract the archive and browse to that directory `<KeyCloak_directory>/standalone/configuration`
-```tar -xvf ./keycloak-9.0.3.tar.gz 
-```
+```tar -xvf ./keycloak-9.0.3.tar.gz ```
 
 KeyCloak can be implemented in a standalone mode for testing. For production use-cases, a Clustered KeyCloak implementation is recommended.  
  
@@ -69,12 +68,12 @@ keytool -export -alias localhost -keystore keystore.jks -rfc -file public.cert
 ```
 
 3. Add the generated KeyStore to KeyCloak Configuration
-   Copy the keystore.jks to the location `keycloak_download_location/standalone/configuration`
-
+   Copy the keystore.jks to the location `<KeyCloak_directory>/standalone/configuration`
+NOTE:  This should already be done if you executed the above commands in the configuration dir.
 
 Edit the standalone.xml or standalone-ha.xml depending on the type of the installation. Edit the SSL section under the security-realm sections. 
 
-
+###Piyush can we getthe before and after xml?
 
 `
       <server-identities>
