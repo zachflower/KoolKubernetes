@@ -79,17 +79,18 @@ By default, the server-identities section looks like this -
 <server-identities>
                     <ssl>
                         <keystore path="application.keystore" relative-to="jboss.server.config.dir" keystore-password="password" alias="server" key-password="password" generate-self-signed-certificate-host="localhost"/>
-                    </ssl>
+                    </ssl> 
+</server-identities>
 `
 
 Please change the default section to reflect the keystore.jks generated along with the password selected. 
 
 `
-      <server-identities>
+<server-identities>
                 <ssl>
                     <keystore path="keystore.jks" relative-to="jboss.server.config.dir" keystore-password="keystore" alias="unknown" key-password="keystore"/>
                 </ssl>
-            </server-identities>
+</server-identities>
 `
  
 
