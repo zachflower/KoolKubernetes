@@ -74,12 +74,14 @@ NOTE:  This should already be done if you executed the above commands in the con
 Edit the standalone.xml or standalone-ha.xml depending on the type of the installation. Edit the SSL section under the security-realm sections. 
 
 By default, the server-identities section looks like this - 
+
 `
 <server-identities>
                     <ssl>
                         <keystore path="application.keystore" relative-to="jboss.server.config.dir" keystore-password="password" alias="server" key-password="password" generate-self-signed-certificate-host="localhost"/>
                     </ssl>
 `
+
 Please change the default section to reflect the keystore.jks generated along with the password selected. 
 
 `
