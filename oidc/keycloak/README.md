@@ -308,7 +308,7 @@ Also, ensure that email field for the pf9 user has been populated and the email_
  ( NOTE: You can repeat group creation steps where you create an additional group. Create an additional user and attach that user to the respective group.)   
 
 
-### Changing API server flags ( For PMKFT and PMK clusters) 
+### Modifying API server flags ( For PMKFT and PMK clusters) 
  
 
 Here are the API server flags that need to be added for OIDC authentication to work. 
