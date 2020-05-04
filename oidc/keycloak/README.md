@@ -178,6 +178,8 @@ key-password= *key password selected earlier*
 `https://interface_ip:8443`
 
  
+(NOTE: In case you are getting a warning and you are unable to proceed to the management page on Mac 10.15.x, you may be hitting the following issue - https://stackoverflow.com/questions/58802767/no-proceed-anyway-option-on-neterr-cert-invalid-in-chrome-on-macos)
+ 
 
 4. Login to the management console using the pf9 user credentials created earlier.  Create a client  by Clicking on the Clients tab in the right pane  ( You can also choose to create a new realm and then create a client )
 
