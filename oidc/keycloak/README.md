@@ -19,6 +19,7 @@ cd /opt
 wget https://downloads.jboss.org/keycloak/9.0.3/keycloak-9.0.3.tar.gz
 ```
 Extract the archive and browse to that directory `<KeyCloak_directory>/standalone/configuration`
+
 ```tar -xvf ./keycloak-9.0.3.tar.gz ```
 
 KeyCloak can be implemented in a standalone mode for testing. For production use-cases, a Clustered KeyCloak implementation is recommended.  
@@ -108,6 +109,7 @@ key-password =  *key password selected earlier*
  
 
  1. Run the following command to generate a CSR -  
+
 ```bash
 keytool -certreq -alias unknown -keystore keystore.jks -ext SAN=ip:<ip_address>  > keycloak.careq
 ```
