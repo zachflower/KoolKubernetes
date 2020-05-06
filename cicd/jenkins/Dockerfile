@@ -23,10 +23,10 @@ RUN apk add --no-cache maven \
       && apk add curl \
       && apk add nodejs \
       && apk add ruby \
-      && apk add go \   
+      && apk add go
 
 # Install Kubectl
-RUN  wget https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
-
+RUN  wget https://storage.googleapis.com/kubernetes-release/release/$(curl -s \
+https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 # Run as root
 RUN chown -R root "$JENKINS_HOME" /usr/share/jenkins/ref
