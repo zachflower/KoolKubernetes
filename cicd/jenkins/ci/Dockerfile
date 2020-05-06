@@ -18,10 +18,9 @@ RUN apk add --no-cache maven \
     docker \
     gettext
 
- RUN  apk update \
+ RUN  apk add --no-cache --update nodejs npm \
       && apk add sudo \
       && apk add curl \
-      && apk add nodejs \
       && apk add ruby \
       && apk add go
 
