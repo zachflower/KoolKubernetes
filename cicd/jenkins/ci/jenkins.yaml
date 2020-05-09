@@ -119,7 +119,7 @@ spec:
       containers:
         - name: jenkins
           image: pf9sys/jenkinsci:jenkins
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
