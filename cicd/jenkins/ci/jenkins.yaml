@@ -155,7 +155,7 @@ spec:
       targetPort: 8080
     - name: jnlp
       port: 50000
-      targetPort: 5000
+      targetPort: 50000
   selector:
     app: jenkins
 ...
