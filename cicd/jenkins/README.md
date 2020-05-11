@@ -27,3 +27,31 @@ The deployment creates a persistent volume with node affinity to schedule the cl
 
 At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
+## Store Dockerhub credentials
+In Jenkins UI store DockerHub username and password to allow Jenkins to upload the images on DockerHub. In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username and password and ID.
+
+![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add-cred.png)
+
+## Run Pipeline
+Create a multi branch pipeline by clicking on ‘New Item’ on the home page. Provide the name for the pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK. 
+
+![creae](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
+
+In Branch Source click Add source. Add the full path of the GitHub repository for Jenkins to checkout the code. Here we are using https://github.com/p9sys/webapp01.git. Click Save.
+
+![source](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/source.png)
+
+The Pipeline will proceed through stages namely checkout SCM, build, publish and deploy. Once the build stage is successful, the publish stage will create a docker image of the NodeJS application and push it to Dockerhub. Finally the deploy stage will use the kubernetes plugin to deploy the application image on the node. 
+
+![run](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/run.png)
+
+The NodeJS application by now should be accessible outside via a load balancer IP.
+
+```bash
+$ kubectl get svc p9-react-app
+NAME           TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE
+p9-react-app   LoadBalancer   10.21.245.88   10.128.231.207   80:31298/TCP   13m
+```
+
+![nodejs-app](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/nodejs-app.png)
+
