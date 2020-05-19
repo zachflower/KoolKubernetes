@@ -2,7 +2,7 @@
 
 Jenkins is a well known, widely adopted Continuous Integration platform in enterprises. 
 
-## Deployment of Jenkins on one of your Platform9 Managed Kubernetes cluster
+## Deployment of Jenkins on one of your Platform9 Managed Kubernetes clusters
 Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided with the deployment manifest has Openjdk8, Maven, Go and NodeJS preinstalled with some commonly used plugins. The Jenkins docker image provided here can be further customized once Jenkins is up and running.
 
 ## Jenkins configuration
