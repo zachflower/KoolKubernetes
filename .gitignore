@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/cicd/jenkins/webapp01/node_modules
+node_modules
 /.pnp
 .pnp.js
 
@@ -18,7 +18,6 @@
 .env.test.local
 .env.production.local
 
-/cicd/jenkins/webapp01/npm-debug.log*
-/cicd/jenkins/webapp01/yarn-debug.log*
-/cicd/jenkins/webapp01/yarn-error.log*
-/cicd/react-app01/node_modules/*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
