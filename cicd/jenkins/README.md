@@ -21,7 +21,7 @@ Deploy Jenkins using kubectl
 ```bash
 $ kubectl apply -f KoolKubernetes/cicd/jenkins/ci/jenkins.yaml
 ```
-The deployment creates a persistent volume with node affinity to schedule the jenkins pod on the node with label set to 'jenkins'. This makes sure Jenkins pod gets scheduled on the same node each time so that configuration in Jenkins home directory is automatically persisted across jenkins pod restarts.
+The deployment creates a persistent volume with node affinity to schedule the jenkins pod on the node with label set to 'jenkins'. This makes sure that configuration in Jenkins home directory is automatically persisted across jenkins pod restarts.
 
 At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
