@@ -3,9 +3,7 @@
 Jenkins is a well known, widely adopted Continuous Integration platform in enterprises. 
 
 ## Deployment of Jenkins on one of your Platform9 Managed Kubernetes cluster
-Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided with the deployment manifest has Openjdk8, Maven, Go and NodeJS preinstalled with some commonly used plugins. The Jenkins docker image can be further customized to add or remove plugins.
-
-Jenkins running on kubernetes typically requires persistent volume to maintain it’s configuration across restarts.
+Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided with the deployment manifest has Openjdk8, Maven, Go and NodeJS preinstalled with some commonly used plugins. The Jenkins docker image provided here can be further customized once Jenkins is up and running.
 
 ## Jenkins configuration
 Before deploying Jenkins we will label one node with a specific key value pair so that Jenkins pod gets scheduled on this node. 
@@ -23,16 +21,22 @@ Deploy Jenkins using kubectl
 ```bash
 $ kubectl apply -f KoolKubernetes/cicd/jenkins/ci/jenkins.yaml
 ```
-The deployment creates a persistent volume with node affinity to schedule the claiming pod on the node with label set as jenkins. This makes sure Jenkins pod gets scheduled on the same node each time so that configuration in Jenkins home directory is automatically persisted. 
+The deployment creates a persistent volume with node affinity to schedule the claiming pod on the node with label set as jenkins. This makes sure Jenkins pod gets scheduled on the same node each time so that configuration in Jenkins home directory is automatically persisted. As a best practise, Jenkins running on kubernetes typically requires persistent volume to maintain it’s configuration across restarts.
 
 At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
 ## Store Dockerhub and GitHub credentials
 Storing DockerHub username and password of your DockerHub repository into Jenkins is required by pipeline to upload images to your repository. Also store your GitHub credentials in Jenkins as it helps pulling the KoolKuberenetes repository instantly.
 
-In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username and password and ID.
+On Jenkins UI on the home page click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username, password and ID.
 
-![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add-cred.png)
+![add-cred-dhub](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred_dhub.png)
+
+
+Similarly add credential for GitHub account. Once both dockerhub and GitHub credentials are in place they can be seen as below:
+
+
+![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
 
 
 ## Run Pipeline
