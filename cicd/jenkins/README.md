@@ -40,7 +40,7 @@ Similarly add credential for GitHub account. Once both dockerhub and GitHub cred
 
 
 ## Add DockerHub registry location
-Set your dockerhub registry location as environment variable. This will allow pipeline to publish the image to your dockerhub repository. The pipeline will failif this environment variable is not declared.
+Set your dockerhub registry location as environment variable by clicking Jenkins -> Manage Jenkins -> Configure System. Scroll down to Global Properties. Tick 'Environment Variables'. Set the variable as shown in the image below. This allows the pipeline to publish the image to the dockerhub repository mentioned in the environment variable.
 
 ![add-env](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/dhub_loc.png)
 
