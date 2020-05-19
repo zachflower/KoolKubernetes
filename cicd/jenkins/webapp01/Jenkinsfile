@@ -22,17 +22,15 @@ pipeline {
 	    }
 
 
-      	stage ('BUILD') {
+      stage ('BUILD') {
         	steps {
 
-              sh 'npm config rm proxy'
-              sh 'npm config rm https-proxy'
-              sh 'npm install'
+              sh 'npm install --prefix ${WORKSPACE}/${PATH} -g'
 
         	}
-        }	
+      }	
 
-        stage ('PUBLISH') {
+      stage ('PUBLISH') {
         	environment {
               // make sure below credential is stored in Jenkins global credentials.
             	registryCredential = 'dockerhub'
@@ -49,12 +47,12 @@ pipeline {
 
           	}
 
-        }
+      }
 
-        stage ('DEPLOY') {
+      stage ('DEPLOY') {
          	steps {
              sh 'envsubst < ${WORKSPACE}/${PATH}/k8s/app.yaml | kubectl apply -f -'
         	}
         }
-    }
+      }
 }
