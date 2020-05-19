@@ -21,3 +21,4 @@
 /cicd/jenkins/webapp01/npm-debug.log*
 /cicd/jenkins/webapp01/yarn-debug.log*
 /cicd/jenkins/webapp01/yarn-error.log*
+/cicd/react-app01/node_modules/*
