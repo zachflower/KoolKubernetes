@@ -32,7 +32,9 @@ Storing DockerHub username and password of your DockerHub repository into Jenkin
 
 In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username and password and ID.
 
-![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add-cred.png)
+![add-cred-dhub](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred_dhub.png)
+
+![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
 
 
 ## Run Pipeline
