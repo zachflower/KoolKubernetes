@@ -39,10 +39,15 @@ Similarly add credential for GitHub account. Once both dockerhub and GitHub cred
 ![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
 
 
+## Add DockerHub registry location
+Set your dockerhub registry location as environment variable. This will allow pipeline to publish the image to your dockerhub repository. The pipeline will failif this environment variable is not declared.
+
+![add-env](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/dhub_loc.png)
+
 ## Run Pipeline
 Create a multi branch pipeline by clicking on ‘New Item’ on the home page. Provide the name for the pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK. 
 
-![creae](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
+![create](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
 
 
 In Branch Source click Add source. Add the full path of the GitHub repository for Jenkins to checkout the code. Here we are using https://github.com/p9sys/webapp01.git. Click Save.
