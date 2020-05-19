@@ -12,7 +12,8 @@ RUN /usr/local/bin/install-plugins.sh workflow-aggregator && \
     /usr/local/bin/install-plugins.sh kubernetes-cli && \
     /usr/local/bin/install-plugins.sh github-branch-source && \
     /usr/local/bin/install-plugins.sh docker-build-publish && \
-    /usr/local/bin/install-plugins.sh artifactory
+    /usr/local/bin/install-plugins.sh artifactory && \
+    /usr/local/bin/install-plugins.sh blueocean
 
 # install Programs
 RUN apk add --no-cache maven \
