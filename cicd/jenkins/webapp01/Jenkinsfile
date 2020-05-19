@@ -25,7 +25,7 @@ pipeline {
       stage ('BUILD') {
         	steps {
 
-              sh 'npm install --prefix ${WORKSPACE}/${PATH} -g'
+             // sh 'npm install --prefix ${WORKSPACE}/${PATH} -g'
 
         	}
       }	
