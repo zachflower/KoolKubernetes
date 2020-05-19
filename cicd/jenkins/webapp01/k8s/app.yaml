@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: p9-react-app
-          image: pf9sys/webapp01:latest
+          image: ${REPOSITORY_TAG}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
