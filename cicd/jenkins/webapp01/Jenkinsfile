@@ -3,8 +3,8 @@ pipeline {
 	
 	environment {
 
-	  	GITHUB_ORGANIZATION = "p9sys"	
-	  	GITHUB_REPO = "webapp01"
+	  	GITHUB_ORGANIZATION = "platform9"	
+	  	GITHUB_REPO = "KoolKubernetes"
 	  	DOCKERHUB_REGISTRY = "pf9sys/webapp01"
  	}
     
@@ -37,8 +37,8 @@ pipeline {
           	steps {
 
                	 	script {
-                    	def appimage = docker.build DOCKERHUB_REGISTRY + ":$BUILD_NUMBER"
-                    	docker.withRegistry( '', registryCredential ) {
+                    	def appimage = docker.build ("${DOCKERHUB_REGISTRY}:${env.BUILD_ID}", "--network host -f Dockerfile cicd/jenkins/webapp01")
+                         	docker.withRegistry( '', registryCredential ) {
                         	appimage.push()
                         	appimage.push('latest')
                     	}
@@ -51,7 +51,7 @@ pipeline {
         stage ('DEPLOY') {
         	steps {
 
-        		sh 'kubectl apply -f k8s/app.yaml'
+        		sh 'kubectl apply -f cicd/jenkins/webapp01/k8s/app.yaml'
         	}
         }
     }
