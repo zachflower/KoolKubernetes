@@ -50,15 +50,23 @@ Create a multi branch pipeline by clicking on ‘New Item’ on the home page. P
 ![create](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
 
 
-In Branch Source click Add source. Add the full path of the GitHub repository for Jenkins to checkout the code. Here we are using https://github.com/p9sys/webapp01.git. Click Save.
+In Branch Source click Add source. Set 'GitHub' in credentials. Add the full path of the KooklKubernetes GitHub repository for Jenkins to checkout the code under 'Repository HTTPS URL'. Click 'Validate' button to check Jenkins has access to the repository.
 
 ![source](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/source.png)
 
+Further scroll down on the page to 'Build Configuration' and set the script path to 'cicd/jenkins/webapp01/Jenkinsfile'. Finally press Save at the bottom to finish configuring. 
 
-The Pipeline will proceed through stages namely checkout SCM, build, publish and deploy. Once the build stage is successful, the publish stage will create a docker image of the NodeJS application and push it to Dockerhub. Finally the deploy stage will use the kubernetes plugin to deploy the application image on the node. 
+![jenkinsfile](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/jenkinsfile_path.png)
 
-![run](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/run.png)
 
+The Pipeline will proceed executing through immediately after you click Save.  
+
+![p-start](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/p_start.png)
+
+
+It will move through stages namely checkout SCM, build, publish and deploy. Once the build stage is successful, the publish stage will create a docker image of the NodeJS application and push it to your Dockerhub repository. Finally the deploy stage will use the kubernetes plugin to deploy the application image on the node from your dockerhub image just uploaded.
+
+![p-end](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/p_finish.png)
 
 The NodeJS application by now should be accessible outside via a load balancer IP.
 
@@ -67,6 +75,7 @@ $ kubectl get svc p9-react-app
 NAME           TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE
 p9-react-app   LoadBalancer   10.21.245.88   10.128.231.207   80:31298/TCP   13m
 ```
+Application should be now accessible on the loadbalancer IP address.
 
 ![nodejs-app](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/nodejs-app.png)
 
