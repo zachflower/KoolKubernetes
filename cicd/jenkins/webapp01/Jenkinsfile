@@ -26,6 +26,7 @@ pipeline {
         	steps {
 
              // sh 'npm install --prefix ${WORKSPACE}/${PATH} -g'
+             echo 'Hello'
 
         	}
       }	
