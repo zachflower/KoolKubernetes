@@ -35,7 +35,7 @@ In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted
 ![add-cred-dhub](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred_dhub.png)
 
 
-After adding both dockerhub and GitHub credentials the Jenkins will show them masked as below
+Similarly add credential for GitHub account. After adding both dockerhub and GitHub credentials the Jenkins will show them masked as below
 
 
 ![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
