@@ -26,27 +26,26 @@ The deployment creates a persistent volume with node affinity to schedule the je
 At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
 ## Store Dockerhub and GitHub credentials
-Storing DockerHub username and password of your DockerHub repository into Jenkins is required by pipeline to upload images to your repository. Also store your GitHub credentials in Jenkins as it helps pulling the KoolKuberenetes repository instantly.
-On Jenkins UI on the home page click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username, password and ID.
+Storing DockerHub username and password of your DockerHub repository into Jenkins is required by pipeline to upload images to your dockerhub repository. Additionally store your GitHub credentials to pull the KoolKuberenetes repository. To do this in Jenkins UI, on the home page click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the dockerhub username, password and set ID as 'dockerhub'.
 
 ![add-cred-dhub](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred_dhub.png)
 
-Similarly add credential for GitHub account. Once both dockerhub and GitHub credentials are in place they can be seen as below:
+Similarly add credential for GitHub account. Here set ID as 'GitHub'. Once both dockerhub and GitHub credentials are in place they can be seen as below:
 
 ![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
 
 
 ## Bring your DockerHub registry to publish image
-Set your dockerhub registry location as environment variable by clicking Jenkins -> Manage Jenkins -> Configure System. Scroll down to Global Properties. Tick 'Environment Variables'. Set the variable as shown in the image below. This allows the pipeline to publish the image to your dockerhub repository mentioned in the environment variable. Use any pre-existing dockerhub repository or create a new one on hub.docker.com.
+Set your dockerhub registry location as environment variable by clicking Jenkins -> Manage Jenkins -> Configure System. Scroll down to Global Properties. Tick 'Environment Variables'. Set the variable as shown in the image below. This allows the pipeline to publish the image to your dockerhub repository using credentials set earlier. For this purpose use a pre-existing dockerhub repository or create a new one on hub.docker.com.
 
 ![add-env](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/dhub_loc.png)
 
 ## Run Pipeline
-Now we are all set to configure pipeline to run on Jenkins. Create a multi branch pipeline by clicking on ‘New Item’ on the home page. Provide some name to this pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK to move to next page. 
+Now we are all set to configure pipeline in Jenkins before it can be run. The pipeline is already defined in the repository. it just need to be configured to run with above credentials and image repository. For this click ‘New Item’ on the home page,  provide some name to this pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK to move to next page. 
 
 ![create](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
 
-On this page under 'Branch Source' click Add source. Set 'GitHub' in credentials from drop-down menu. Add the full path of the KooklKubernetes GitHub repository in 'Repository HTTPS URL'. Clicking 'Validate' button will verify access on the repo.
+On this page under 'Branch Source' click Add source. Set 'GitHub' in credentials from drop-down menu. Add the full path of the KooklKubernetes GitHub repository in 'Repository HTTPS URL'. Clicking 'Validate' button will verify access to the repo.
 
 ![source](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/source.png)
 
@@ -63,7 +62,7 @@ It will move through stages namely checkout SCM, build, publish and deploy. Once
 
 ![p-end](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/p_finish.png)
 
-The NodeJS application by now should be accessible outside via the load balancer IP.
+By now the NodeJS application should be accessible to outside world via the load balancer IP.
 
 ```bash
 $ kubectl get svc p9-react-app
