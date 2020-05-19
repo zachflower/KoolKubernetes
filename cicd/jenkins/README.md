@@ -3,17 +3,18 @@
 Jenkins is a well known, widely adopted Continuous Integration platform in enterprises. 
 
 ## Deployment of Jenkins on one of your Platform9 Managed Kubernetes clusters
-Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided with the deployment manifest has Openjdk8, Maven, Go and NodeJS preinstalled with some commonly used plugins. The Jenkins docker image provided here can be further customized once Jenkins is up and running.
+Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided here has Openjdk8, Maven, Go and NodeJS preinstalled with commonly used plugins. It can be further customized once Jenkins is up and running.
 
 ## Jenkins configuration
-Before deploying Jenkins we will label one node with a specific key value pair so that Jenkins pod gets scheduled on this node. 
+Before deploying Jenkins label one node with a specific key value pair so that Jenkins pod gets scheduled on this node. 
 
 Select the node with enough resources for Jenkins to run on. Label it in the following manner. 
 
 ```bash
 $ kubectl label nodes <node-name> jenkins=allow
 ```
-Now clone the Kool Kubernetes repository on any machine from where the kubectl can deploy json manifests on kubernetes cluster.
+Now clone the Kool Kubernetes repository on any machine from where the kubectl can deploy json manifests to your kubernetes cluster.
+
 ```bash
 $ git clone https://github.com/platform9/KoolKubernetes.git
 ```
@@ -21,9 +22,9 @@ Deploy Jenkins using kubectl
 ```bash
 $ kubectl apply -f KoolKubernetes/cicd/jenkins/ci/jenkins.yaml
 ```
-The deployment creates a persistent volume with node affinity to schedule the jenkins pod on the node with label set to 'jenkins'. This makes sure that configuration in Jenkins home directory is automatically persisted across jenkins pod restarts.
+This creates a persistent volume with node affinity to schedule the jenkins pod on the node with label set to 'jenkins'. It ensures existing plus new configurations in Jenkins home directory are automatically persisted across jenkins pod restart.
 
-At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
+At the end of this deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
 ## Store Dockerhub and GitHub credentials
 Storing DockerHub username and password of your DockerHub repository into Jenkins is required by pipeline to upload images to your dockerhub repository. Additionally store your GitHub credentials to pull the KoolKuberenetes repository. To do this in Jenkins UI, on the home page click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the dockerhub username, password and set ID as 'dockerhub'.
