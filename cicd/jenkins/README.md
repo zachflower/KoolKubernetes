@@ -27,8 +27,10 @@ The deployment creates a persistent volume with node affinity to schedule the cl
 
 At the end of deployment a service type loadbalancer is created and Jenkins can be accessed via http://Load-Balancer-IP:8080
 
-## Store Dockerhub credentials
-In Jenkins UI store DockerHub username and password to allow Jenkins to upload the images on DockerHub. In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username and password and ID.
+## Store Dockerhub and GitHub credentials
+Storing DockerHub username and password of your DockerHub repository into Jenkins is required by pipeline to upload images to your repository. Also store your GitHub credentials in Jenkins as it helps pulling the KoolKuberenetes repository instantly.
+
+In Jenkins Home click Credentials -> Jenkins -> Global credentials (unrestricted) -> Add credentials. Fill out the username and password and ID.
 
 ![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add-cred.png)
 
