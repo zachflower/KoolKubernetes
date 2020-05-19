@@ -37,7 +37,7 @@ pipeline {
           	steps {
 
                	 	script {
-                    	def appimage = docker.build ("${DOCKERHUB_REGISTRY}:${env.BUILD_ID}", "--network host -f Dockerfile ${WORKSPACE}/cicd/jenkins/webapp01")
+                    	def appimage = docker.build ("${DOCKERHUB_REGISTRY}:${env.BUILD_ID}", "--network host ${WORKSPACE}/cicd/jenkins/webapp01")
                          	docker.withRegistry( '', registryCredential ) {
                         	appimage.push()
                         	appimage.push('latest')
