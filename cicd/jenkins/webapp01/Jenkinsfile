@@ -7,7 +7,7 @@ pipeline {
       GITHUB_REPO = "KoolKubernetes"
 	  	//DOCKERHUB_REGISTRY = "pf9sys/webapp01" This is no more required as it is declared in Jenkins as env. variable
       REPOSITORY_TAG="${DOCKERHUB_REGISTRY}:${env.BUILD_ID}"
-      LPATH="cicd/jenkins/webapp01"
+      APP_PATH="cicd/jenkins/webapp01"
  	}
     
     stages {
@@ -24,7 +24,7 @@ pipeline {
 
       stage ('BUILD') {
         	steps {
-             sh 'npm install --prefix ${WORKSPACE}/${LPATH}'
+             sh 'npm install --prefix ${WORKSPACE}/${APP_PATH}'
              echo 'Hello'
 
         	}
@@ -38,7 +38,7 @@ pipeline {
           	steps {
 
                	 	script {
-                    	def appimage = docker.build ("${DOCKERHUB_REGISTRY}:${env.BUILD_ID}", "--network host ${WORKSPACE}/${LPATH}")
+                    	def appimage = docker.build ("${DOCKERHUB_REGISTRY}:${env.BUILD_ID}", "--network host ${WORKSPACE}/${APP_PATH}")
                          	docker.withRegistry( '', registryCredential ) {
                         	appimage.push()
                         	appimage.push('latest')
@@ -51,7 +51,7 @@ pipeline {
 
       stage ('DEPLOY') {
          	steps {
-             sh 'envsubst < ${WORKSPACE}/${LPATH}/k8s/app.yaml | kubectl apply -f -'
+             sh 'envsubst < ${WORKSPACE}/${APP_PATH}/k8s/app.yaml | kubectl apply -f -'
         	}
         }
       }
