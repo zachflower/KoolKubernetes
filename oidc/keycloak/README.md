@@ -211,7 +211,9 @@ Redirect_URI : urn:ietf:wg:oauth:2.0:oob
 
 ![Keycloak_Secret](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/KeyCloak_Secret.png)
 
-7. Click on Mappers sub-tab and create the following mappings. 
+7. Click on Mappers sub-tab and create the following mappings by choosing User property.
+
+![user_type](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/user_property_mapper_type.png)
 
     a. email 
 
