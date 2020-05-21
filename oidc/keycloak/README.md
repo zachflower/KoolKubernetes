@@ -215,7 +215,8 @@ Redirect_URI : urn:ietf:wg:oauth:2.0:oob
 
 ![user_type](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/user_property_mapper_type.png)
 
-    a. email 
+    
+   a. email 
 
 ```Name: email 
 
