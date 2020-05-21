@@ -209,6 +209,8 @@ Redirect_URI : urn:ietf:wg:oauth:2.0:oob
 
 6. Go to the Credentials sub-tab and ensure that Secret value is populated. If not, click on Regenerate Secret and store it for further use. 
 
+![Keycloak_Secret](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/KeyCloak_Secret.png)
+
 7. Click on Mappers sub-tab and create the following mappings. 
 
     a. email 
