@@ -165,7 +165,7 @@ key-password= *key password selected earlier*
 1. Add an admin user by the browsing to the location 
  `cd keycloak_download_location/bin` and running the command - 
 ```bash
-./add-user-keycloak.sh -u pf9 
+./add-user-keycloak.sh -u admin 
 ```
 
 2. Start the KeyCloak server from the same location  -  
@@ -308,12 +308,12 @@ Name the group as cluster-admins.
 ![all_users](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/all_users.png)
 
 
-Then  select the pf9 user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
+Then  select the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
 
 
 ![pf9_user](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
 
-Also, ensure that email field for the pf9 user has been populated and the email_verified flag has been set. 
+Also, ensure that email field for the admin user has been populated and the email_verified flag has been set. 
 
 
 ![email_verified](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/email_verified.png)
@@ -395,9 +395,17 @@ kubectl krew install oidc-login
 I’ll be proceeding with the Linux Machine example going forward. 
 
 Run the following command to ensure that OIDC authentication via KeyCloak is successful.  
+
 ```bash
 ./kubectl-oidc_login setup   --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/<realm_name>   --oidc-client-id=<client_ID>   --oidc-client-secret=<secret noted earlier in Keycloak>--insecure-skip-tls-verify --grant-type password
 ```
+
+If you are following the values in this example, the above command would look like 
+
+```bash
+./kubectl-oidc_login setup   --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master   --oidc-client-id=kubernetes   --oidc-client-secret=<secret noted earlier in Keycloak>--insecure-skip-tls-verify --grant-type password
+```
+
 You would get a set of instructions once the authentication is successful which includes Creating a cluster role, setting up API server flags, etc. 
 
 Let’s create a cluster role binding as per the instructions you get from the above command.  Here’s an example for a cluster-admin  Cluster role binding
