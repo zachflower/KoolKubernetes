@@ -351,7 +351,7 @@ In the case of Self-signed certs,  `-oidc-ca-file` would the public.cert created
 If you are following this example, the flags would be - 
  
  ```bash
-- "--oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master>"
+- "--oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master"
 - "--oidc-client-id=kubernetes"
 - "--oidc-ca-file=/srv/kubernetes/authn/public.cert"
 - "--oidc-username-claim=email"
@@ -406,7 +406,84 @@ If you are following the values in this example, the above command would look li
 ./kubectl-oidc_login setup   --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master   --oidc-client-id=kubernetes   --oidc-client-secret=<secret noted earlier in Keycloak>--insecure-skip-tls-verify --grant-type password
 ```
 
-You would get a set of instructions once the authentication is successful which includes Creating a cluster role, setting up API server flags, etc. 
+You would get a set of instructions once the authentication is successful which includes Creating a cluster role, setting up API server flags, etc.  Below is an example - 
+
+```bash
+## 2. Verify authentication
+
+You got a token with the following claims:
+
+{
+  "exp": 1590133589,
+  "iat": 1590133529,
+  "auth_time": 0,
+  "jti": "22cec856-c499-4354-8eee-3a5493cedc66",
+  "iss": "https://10.128.240.181:8443/auth/realms/master",
+  "aud": "k8s",
+  "sub": "7f91f6b3-659b-4e88-a0cf-13a49b081301",
+  "typ": "ID",
+  "azp": "k8s",
+  "session_state": "bfdc1c11-a8ef-4903-baa8-c00f07e1bd36",
+  "acr": "1",
+  "email_verified": true,
+  "groups": [
+    "/cluster-admins"
+  ],
+  "preferred_username": "admin",
+  "email": "abc@xyz.com",
+  "username": "admin"
+}
+
+## 3. Bind a cluster role
+
+Apply the following manifest:
+
+	kind: ClusterRoleBinding
+	apiVersion: rbac.authorization.k8s.io/v1
+	metadata:
+	  name: oidc-cluster-admin
+	roleRef:
+	  apiGroup: rbac.authorization.k8s.io
+	  kind: ClusterRole
+	  name: cluster-admin
+	subjects:
+	- kind: User
+	  name: https://10.128.240.181:8443/auth/realms/master#7f91f6b3-659b-4e88-a0cf-13a49b081301
+
+## 4. Set up the Kubernetes API server
+
+Add the following options to the kube-apiserver:
+
+	--oidc-issuer-url=https://10.128.240.181:8443/auth/realms/master
+	--oidc-client-id=k8s
+
+## 5. Set up the kubeconfig
+
+Run the following command:
+
+	kubectl config set-credentials oidc \
+	  --exec-api-version=client.authentication.k8s.io/v1beta1 \
+	  --exec-command=kubectl \
+	  --exec-arg=oidc-login \
+	  --exec-arg=get-token \
+	  --exec-arg=--oidc-issuer-url=https://10.128.240.181:8443/auth/realms/master
+	  --exec-arg=--oidc-client-id=k8s
+	  --exec-arg=--oidc-client-secret=ade54fef-c5b6-41fa-845d-2e8ddec5f8a6
+	  --exec-arg=--insecure-skip-tls-verify
+	  --exec-arg=--username=admin
+
+## 6. Verify cluster access
+
+Make sure you can access the Kubernetes cluster.
+
+	kubectl --user=oidc get nodes
+
+You can switch the default context to oidc.
+
+	kubectl config set-context --current --user=oidc
+
+You can share the kubeconfig to your team members for on-boarding.
+```
 
 Let’s create a cluster role binding as per the instructions you get from the above command.  Here’s an example for a cluster-admin  Cluster role binding
 
@@ -423,7 +500,7 @@ subjects:
 - kind: Group
   name: oidc:/cluster-admins
 ```
-( You can create additional ClusterRolebindings  associated with individual groups and replace the   subject: name field in the  above YAML) 
+( You can create additional ClusterRolebindings  associated with individual groups and replace the subject: name field in the  above YAML) 
 
 Lastly, set up the kubeconfig file to reflect the following values - 
 
