@@ -303,7 +303,12 @@ Name the group as cluster-admins.
 
  
 
-9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the left pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
+9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the left pane. Click on View all the users to get the list of existing users present in KeyCloak
+
+![all_users](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/all_users.png)
+
+
+Then  select the pf9 user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
 
 
 ![pf9_user](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
