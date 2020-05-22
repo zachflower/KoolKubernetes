@@ -291,14 +291,19 @@ Full Group Path: Enabled
 
 8. Using these mappers, attributes like Groups ( that would be mapped to cluster-role bindings in K8s RBAC) and the username and email specified during login will be verified. 
 
-Create a group by Clicking Groups under the Manage section in the right pane. Name the group as cluster-admins. 
+Create a group by Clicking Groups under the Manage section in the left pane. 
 
+
+![group_icon]https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Groups_icon.png
+
+
+Name the group as cluster-admins. 
  
 ![group_creation](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/group_creation.png)
 
  
 
-9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the right pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
+9. Add the pf9 user created earlier to this group by Clicking Users under the Manage section in the left pane. Click on the admin user and go to Groups section, select View all groups, then select Cluster admins and click on Join 
 
 
 ![pf9_user](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/pf9_user.png)
