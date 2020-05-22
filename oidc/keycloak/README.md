@@ -332,13 +332,11 @@ Here are the API server flags that need to be added for OIDC authentication to w
 
 SSH to the master server. 
 
- Browse to the location - 
-
-`cd /opt/pf9/pf9-kube/conf/masterconfig/base`
-
+ 
   1. copy the CA certificate (public.crt generated in the Cert generation step in case of Self-Signed cert) on each master and save it at - /etc/pf9/kube.d/authn ( Keep an additional copy of this on each masters as well)
 
-  2.  Edit the master.yaml and add the following lines under the section command for the apiserver container. 
+
+  2. Browse to the location - `cd /opt/pf9/pf9-kube/conf/masterconfig/base` and edit the master.yaml and add the following lines under the section command for the apiserver container. 
 ```bash
 - "--oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/<realm_name>"
 - "--oidc-client-id=<Client Name created in keycloak>"
@@ -348,9 +346,20 @@ SSH to the master server.
 - "--oidc-groups-claim=groups"
 - "--oidc-groups-prefix=oidc:"
 ```
-In the case of Self-signed certs,  `-oidc-ca-file` would the public.crt created in the previous steps. 
+In the case of Self-signed certs,  `-oidc-ca-file` would the public.cert created in the previous steps. 
 
+If you are following this example, the flags would be - 
  
+ ```bash
+- "--oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master>"
+- "--oidc-client-id=kubernetes"
+- "--oidc-ca-file=/srv/kubernetes/authn/public.cert"
+- "--oidc-username-claim=email"
+- "--oidc-username-prefix=oidc:"
+- "--oidc-groups-claim=groups"
+- "--oidc-groups-prefix=oidc:"
+```
+
 
 3. Stop the pf9-kube process and start it using the following commands on the master servers as it will restart the api-server component needed for the above flags to take effect.  
 ```bash
