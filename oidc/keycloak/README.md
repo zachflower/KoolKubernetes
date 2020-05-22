@@ -526,6 +526,25 @@ users:
       command: <path_to_kubelogin>/kubelogin
       env: null
 ```
+if you are following the above example, kubeconfig should look like this 
+
+
+```bash
+users:
+- name: oidc
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - get-token
+      - --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master
+      - --oidc-client-id=kubernetes
+      - --oidc-client-secret=<secret_noted_earlier>
+      - --insecure-skip-tls-verify
+      - --grant-type=password
+      command: <path_to_kubelogin>/kubelogin
+      env: null
+```
 
 For Mac Users, kubeconfig should look like the below configuration and edit the relevant context to reflect the oidc user. 
 ```bash
@@ -539,6 +558,28 @@ users:
       - get-token
       - --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/<realm_name>
       - --oidc-client-id=<oidc_client_id>
+      - --oidc-client-secret=<secret_noted_earlier>
+      - --insecure-skip-tls-verify
+      - --grant-type=password
+      command: kubectl
+      env: null
+```
+
+
+if you are following the above example, kubeconfig should look like this 
+
+
+```bash
+users:
+- name: oidc
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - oidc-login
+      - get-token
+      - --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/master
+      - --oidc-client-id=kubernetes
       - --oidc-client-secret=<secret_noted_earlier>
       - --insecure-skip-tls-verify
       - --grant-type=password
