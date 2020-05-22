@@ -294,7 +294,7 @@ Full Group Path: Enabled
 Create a group by Clicking Groups under the Manage section in the left pane. 
 
 
-![group_icon] (https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Groups_icon.png)
+![group_icon](https://github.com/platform9/KoolKubernetes/blob/master/oidc/keycloak/images/Groups_icon.png)
 
 
 Name the group as cluster-admins. 
