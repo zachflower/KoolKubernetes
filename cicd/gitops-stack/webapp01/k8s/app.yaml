@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: p9-react-app
-        version: 0.8.0
+        version: 0.9.0
     spec:
       containers:
         - name: p9-react-app

@@ -59,9 +59,12 @@ To resolve this you need to add `DOCKER_LOGIN` and `DOCKER_PASSWORD` as environm
 The value is your Docker user/org name and password
 ![circleci-environmentvariable2](images/circleci-environmentvariable2.png)
 
-Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine. In your Docker repo you will also find the image that we can use for the CD part of the demo.
+Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine. 
+![circleci-success](images/circleci-success.png)
+In your Docker repo you will also find the image that we can use for the CD part of the demo.
+![circleci-dockerhub](images/circleci-dockerhub.png)
 
-
+You are all set with CircleCI - feel free to add your own jobs/steps in the `.circleci/config.yml` file.
 
 ## Deployment of ArgoCD on one of your Platform9 Managed Kubernetes clusters
 *Optionally: create a dedicated namespace for ArgoCD*
@@ -160,7 +163,7 @@ Confirm new password:
 Password updated      
 ```
 
-### *Optional: Add  your remote Kubernetes cluster(s) to ArgoCD*
+### *Optional*: Add  your remote Kubernetes cluster(s) to ArgoCD
 
 #### kubectx
 In the below example we're using Kubectx which is a nice addon to easily switch between clusters back and forth. You can find  [here](https://github.com/ahmetb/kubectx) more information about Kubectx
@@ -187,23 +190,56 @@ Cluster 'https://<<IP API Server>>' added
 ```
 
 
+## Create a new app in ArgoCD
+Before you'll be able to create a new app, you first need to add your repository into ArgoCD.
+Via the ArgoCD UI you can easily add your GitHub repository by selecting the **settings** icon on the left,  **Repositories** and **+CONNECT REPO USING HTTPS**
+After completing your GitHub information, select **Connect**
+![argocd-addrepo](images/argocd-addrepo.png)
+
+![argocd-repoadded](images/argocd-repoadded.png)
 
 
+Now you can add a new application via the ArgoCD UI. Select **+ NEW APP** and enter the correct information in the fields. A YAML example below:
+```apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: platform9-webapp01
+spec:
+  destination:
+    namespace: webapp01
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: cicd/gitops-stack/webapp01/k8s
+    repoURL: 'https://github.com/platform9/KoolKubernetes'
+    targetRevision: HEAD
+  project: default
+  syncPolicy:
+    automated: null
+```
+
+Since the sync policy in the above example is set to `manual` you will need to select the Synchronize button. 
+![argocd-appadded](images/argocd-appadded.png)
+![argocd-apptobesynced](images/argocd-apptobesynced.png)
 
 
+Once synchronized you will be able to see that the pods are deployed according to the `webapp01/k8s/app.yaml` manifest.
+![argocd-appdeployed](images/argocd-appdeployed.png)
+
+Kubectl output:
+
+```
+kubectl get pods -n webapp01                                                                                      
+NAME                            READY   STATUS    RESTARTS   AGE
+p9-react-app-6f74fd675b-tm9cp   1/1     Running   0          27s
+p9-react-app-6f74fd675b-wb88x   1/1     Running   0          27s
+```
 
 
+## Demo Time
+Let's update the version parameters of your application. To ensure consistency update the version field in the below two files:
+1. /webapp01/package.json
+2. /webapp01/k8s/app.yaml
 
-
-
-
-
-
-
-
-## Result
-![argo-clusters](images/argo-clusters.png)
-
-![argo-status](images/argo-status.png)
-
-![argo-apps](images/argo-apps.png)
+If you now commit/push these changes into your Git repo, then you'll notice:
+1. Automatic CI pipeline triggered in CircleCI
+2. Once completed, your ArgoCD application will out-of-sync which you'll be able to synchronize (manually due to the set policy)
