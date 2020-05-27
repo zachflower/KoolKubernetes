@@ -59,6 +59,9 @@ To resolve this you need to add `IMAGE_NAME` as an environment variable by going
 The value is your Docker user/org name
 ![circleci-environmentvariable2](images/circleci-environmentvariable2.png)
 
+Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine. In your Docker repo you will also find the image that we can use for the CD part of the demo.
+
+
 
 ## Deployment of ArgoCD on one of your Platform9 Managed Kubernetes clusters
 *Optionally: create a dedicated namespace for ArgoCD*
