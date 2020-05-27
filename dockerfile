@@ -9,7 +9,7 @@ COPY cicd/gitops-stack/webapp01/package*.json /app/
 RUN npm install
 
 # COPY ./ /app/
-COPY cicd/gitops-stack/webapp01/* /app/
+COPY cicd/gitops-stack/webapp01/ /app/
 
 RUN npm run build
 
