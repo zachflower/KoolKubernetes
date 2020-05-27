@@ -48,7 +48,7 @@ While the configuration of CircleCI is super intuitive and you can find detailed
 ![circleci-project](images/circleci-setupproject.png)
 2. CircleCI offers a variety of config templates. Just select **Node** and click on **Start Building**
 ![circleci-startbuilding](images/circleci-startbuilding.png)
-3. In the cloned repo you will find an example config file so you can select **Add Manually** and copy `KoolKubernetes/cicd/gitops-stack/.circleci` with its contents to the root of your repository. You do have to update the `.circleci/config.yml` with your Docker repo details. Once added you can click on **Start Building**
+3. In the cloned repo you will find an example config file so you can select **Add Manually** and copy `KoolKubernetes/cicd/gitops-stack/.circleci` with its contents to the root of your repository. You do have to update the `.circleci/config.yml` with your Docker repo details. There is also an example dockerfile that you can put in the root of your repo. Once both files are added to your repo you can click on **Start Building**
 ![circleci-addconfig](images/circleci-addconfig.png)
 ![circleci-startbuilding2](images/circleci-startbuilding2.png)
 

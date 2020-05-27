@@ -4,11 +4,11 @@ FROM node:14.0.0-alpine as build
 
 WORKDIR /app
 
-COPY ~/KoolKubernetes/cicd/gitops-stack/webapp01/package*.json /app/
+COPY package*.json /app/
 
 RUN npm install
 
-COPY ~/KoolKubernetes/cicd/gitops-stack/webapp01/ /app/
+COPY ./ /app/
 
 RUN npm run build
 
