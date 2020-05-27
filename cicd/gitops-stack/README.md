@@ -11,7 +11,7 @@ For this GitOps stack we will be leveraging a variety of tools:
 
 **Platform9 Managed Kubernetes Freedom** provides to you pure-play open source Kubernetes that is delivered as a SaaS managed service. The Freedom plan is a zero-cost plan that offers a capacity of up to 3 clusters and 20 nodes (or 800 vCPUs), community Slack support, and built-in critical alerting. You can sign up here: https://platform9.com/signup/
 
-When you follow these instruction you will get something like the below flow:
+When you follow these instructions you will get something like the below flow:
 ![stack-overview](images/stack-overview.jpg)
 
 
@@ -191,6 +191,8 @@ Cluster 'https://<<IP API Server>>' added
 
 
 ## Create a new app in ArgoCD
+You will find an example Kubernetes manifest in `/webapp01/k8s/app.yaml` . Do make sure to update the parameters such as the Docker image details accordingly
+
 Before you'll be able to create a new app, you first need to add your repository into ArgoCD.
 Via the ArgoCD UI you can easily add your GitHub repository by selecting the **settings** icon on the left,  **Repositories** and **+CONNECT REPO USING HTTPS**
 After completing your GitHub information, select **Connect**
@@ -243,3 +245,45 @@ Let's update the version parameters of your application. To ensure consistency u
 If you now commit/push these changes into your Git repo, then you'll notice:
 1. Automatic CI pipeline triggered in CircleCI
 2. Once completed, your ArgoCD application will out-of-sync which you'll be able to synchronize (manually due to the set policy)
+
+Output of the kubectl describe deployment command - version label should be updated. You can of course also connect to the app itself via it's service and checkout the version at the bottom of the UI.
+
+```kubectl describe deployment p9-react-app -n webapp01 
+Name:                   p9-react-app
+Namespace:              webapp01
+CreationTimestamp:      Wed, 27 May 2020 13:51:36 +0200
+Labels:                 app.kubernetes.io/instance=platform9-webapp01
+Annotations:            deployment.kubernetes.io/revision: 2
+                        kubectl.kubernetes.io/last-applied-configuration:
+                          {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"platform9-weba...
+Selector:               app=p9-react-app
+Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  1 max unavailable, 1 max surge
+Pod Template:
+  Labels:  app=p9-react-app
+**           version=0.9.0**
+  Containers:
+   p9-react-app:
+    Image:        stevenduckaert/cicd
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   p9-react-app-6f56cd8cd5 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  15m   deployment-controller  Scaled up replica set p9-react-app-6f74fd675b to 2
+  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set p9-react-app-6f56cd8cd5 to 1
+  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled down replica set p9-react-app-6f74fd675b to 1
+  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set p9-react-app-6f56cd8cd5 to 2
+  Normal  ScalingReplicaSet  96s   deployment-controller  Scaled down replica set p9-react-app-6f74fd675b to 0```
+
