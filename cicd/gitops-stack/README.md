@@ -44,9 +44,13 @@ You can create a CircleCI account at https://circleci.com/signup/ where you can 
 ![circleci-signup](images/circleci-signup.png)
 
 While the configuration of CircleCI is super intuitive and you can find detailed instructions at https://circleci.com/docs/2.0/getting-started/#section=getting-started, please find below some quick instructions to get things going.
-1. Setup a CircleCI Project: Select  **Set Up Project** next to the repo you want to follow with CircleCI
+1. Setup a CircleCI Project: Select  **Set Up Project** next to the repo you want to follow with CircleCI - in this example we'll be following the KoolKubernetes repo
 ![circleci-project](images/circleci-setupproject.png)
-2. 
+2. CircleCI offers a variety of config templates. Just select **Node** and click on **Start Building**
+![circleci-startbuilding](images/circleci-startbuilding.png)
+3. In the cloned repo you will find an example config file so you can select **Add Manually** and copy `KoolKubernetes/cicd/gitops-stack/.circleci` with its contents to the root of your repository. Once added you can clock on **Start Building**
+![circleci-addconfig](images/circleci-addconfig.png)
+![circleci-startbuilding2](images/circleci-startbuilding2.png)
 
 
 ## Deployment of ArgoCD on one of your Platform9 Managed Kubernetes clusters
