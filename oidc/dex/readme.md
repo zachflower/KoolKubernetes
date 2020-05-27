@@ -26,9 +26,13 @@ Kubernetes has native support for OIDC, which allows you to fit users and their 
 3. Add the following line below the line (DNS.1 = dex-pf9.example.com)  which was edited in Step 2 above.
 
 `IP.1 = <Worker_Node IP pointing to dex-pf9.example.com>`
+
+
 4. On line 24, edit -days switch to a sufficient value so that the certificate doesn't get expired in 10 days.
 
+
 5. Run the bash script gencert.sh which will generate the SSL folder in the current directory
+
 `./gencert.sh`.
 
 
@@ -40,6 +44,7 @@ ca-key.pem	ca.pem		ca.srl		cert.pem	csr.pem		key.pem		req.cnf
 ```
 
 7. Ensure that `X509v3 Subject Alternative Name` is populated with the DNS as well as IP address(es) in the cert.pem by running the command -
+
 ```bash
 openssl x509 -in cert.pem -noout -text | grep -A1 'X509v3 Subject Alternative Name'
 ```
