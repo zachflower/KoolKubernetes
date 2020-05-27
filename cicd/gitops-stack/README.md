@@ -41,7 +41,13 @@ The index.html file is the template that will be sent to the browser, while the 
 ## CircleCI Setup
 *Optionally: Sign up for a CircleCI Free plan in case you do not yet have a CircleCI account. In case you have a Free or Enterprise account feel free to leverage this one as well*
 You can create a CircleCI account at https://circleci.com/signup/ where you can opt for authentication via GitHub. To make life very easy, you can give CircleCI access to work with all your repos.
-The configuration of CircleCI is super intuitive and you find detailed instructions at https://circleci.com/docs/2.0/getting-started/#section=getting-started
+![circleci-signup](images/circleci-signup.png)
+
+While the configuration of CircleCI is super intuitive and you can find detailed instructions at https://circleci.com/docs/2.0/getting-started/#section=getting-started, please find below some quick instructions to get things going.
+1. Setup a CircleCI Project: Select  **Set Up Project** next to the repo you want to follow with CircleCI
+![circleci-project](images/circleci-setupproject.png)
+2. 
+
 
 ## Deployment of ArgoCD on one of your Platform9 Managed Kubernetes clusters
 *Optionally: create a dedicated namespace for ArgoCD*
