@@ -52,6 +52,12 @@ While the configuration of CircleCI is super intuitive and you can find detailed
 ![circleci-addconfig](images/circleci-addconfig.png)
 ![circleci-startbuilding2](images/circleci-startbuilding2.png)
 
+You will see that a pipeline job will kick off automatically which will probably fail due to a `missing environment variable`
+![circleci-error](images/circleci-error.png)
+To resolve this you need to add `IMAGE_NAME` as an environment variable by going to **Project Settings** - **Environment Variables** - **Add Environment Variable**
+![circleci-environmentvariable](images/circleci-environmentvariable.png)
+The value is your Docker user/org name
+![circleci-environmentvariable2](images/circleci-environmentvariable2.png)
 
 
 ## Deployment of ArgoCD on one of your Platform9 Managed Kubernetes clusters
