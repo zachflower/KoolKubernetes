@@ -34,7 +34,7 @@ workflows:
       - docker/publish:
           # complete the image setting with your docker details. For example:
             # image: stevenduckaert/$CIRCLE_PROJECT_REPONAME
-          image: stevenduckaert/$CIRCLE_PROJECT_REPONAME
+          image: stevenduckaert/koolkubernetes
           tag: latest
           dockerfile: dockerfile
           requires:
