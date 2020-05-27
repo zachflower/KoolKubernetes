@@ -19,7 +19,7 @@ While the process is very straightforward, you can find the documentation to cre
 
 ## Example NodeJS app
 In this setup we will be showcasing the instructions for a NodeJS application which is based upon the default react-app. This repo also contains the required files you'll use later on for CircleCI (eg. `.circleci`, `dockerfile`, etc.)
-Clone the webapp01 repo on GitHub, and cd into the created directory. When you issue `npm start`, the application should open up in a browser. There are three main files: 
+Clone the KoolKubernetes repo on GitHub, and cd into `cicd/gitops-stack/`. When you issue `npm start`, the application should open up in a browser. There are three main files: 
 The index.html file is the template that will be sent to the browser, while the code for the application reside in src/App.js. In package.json you can find some parameters of the app. The most useful parameters in this file are the `version` and `name` parameters.
 
 
