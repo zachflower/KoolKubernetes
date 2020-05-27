@@ -12,14 +12,28 @@ For this GitOps stack we will be leveraging a variety of tools:
 **Platform9 Managed Kubernetes Freedom** provides to you pure-play open source Kubernetes that is delivered as a SaaS managed service. The Freedom plan is a zero-cost plan that offers a capacity of up to 3 clusters and 20 nodes (or 800 vCPUs), community Slack support, and built-in critical alerting. You can sign up here: https://platform9.com/signup/
 
 When you follow these instruction you will get something like the below flow:
-![stack-overview](/images/stack-overview.jpg)
+![stack-overview](https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/stack-overview.jpg)
 
 ## Setup of a Platform9 Managed Kubernetes Freedom cluster
 While the process is very straightforward, you can find the documentation to create a Platform9 Managed Kubernetes cluster here: https://docs.platform9.com/kubernetes/introduction/freedom-plan-faq/
 
 ## Example NodeJS app
 In this setup we will be showcasing the instructions for a NodeJS application which is based upon the default react-app. This repo also contains the required files you'll use later on for CircleCI (eg. `.circleci`, `dockerfile`, etc.)
-Clone the KoolKubernetes repo on GitHub, and cd into `cicd/gitops-stack/`. When you issue `npm start`, the application should open up in a browser. There are three main files: 
+Clone the KoolKubernetes repo on GitHub, and cd into `cicd/gitops-stack/webapp01`. When you issue `npm install` followed with `npm start`, the application should open up in a browser. 
+```Compiled successfully!
+
+You can now view react-app01 in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://192.168.1.246:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+```
+https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/webapp01.png
+
+There are three main files: 
 The index.html file is the template that will be sent to the browser, while the code for the application reside in src/App.js. In package.json you can find some parameters of the app. The most useful parameters in this file are the `version` and `name` parameters.
 
 
@@ -103,7 +117,7 @@ kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut
 ```
 You can now logon to the Argo CD UI with the `retrieved` password and the `admin` user
 
-![argo-login](/images/argo-login.png)
+![argo-login](https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/argo-login.png)
 
 You can change the auto-generated password using the argocd CLI
 ```bash
@@ -168,8 +182,8 @@ Cluster 'https://<<IP API Server>>' added
 
 
 ## Result
-![argo-clusters](/images/argo-clusters.png)
+![argo-clusters](https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/argo-clusters.png)
 
-![argo-status](/images/argo-status.png)
+![argo-status](https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/argo-status.png)
 
-![argo-apps](/images/argo-apps.png)
+![argo-apps](https://github.com/platform9/KoolKubernetes/tree/master/cicd/gitops-stack/images/argo-apps.png)
