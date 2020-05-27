@@ -248,25 +248,25 @@ If you now commit/push these changes into your Git repo, then you'll notice:
 
 Output of the kubectl describe deployment command - version label should be updated. You can of course also connect to the app itself via it's service and checkout the version at the bottom of the UI.
 
-```kubectl describe deployment p9-react-app -n webapp01 
-Name:                   p9-react-app
+```kubectl describe deployment platform9-webapp -n webapp01 
+Name:                   platform9-webapp
 Namespace:              webapp01
-CreationTimestamp:      Wed, 27 May 2020 13:51:36 +0200
+CreationTimestamp:      Wed, 27 May 2020 14:25:38 +0200
 Labels:                 app.kubernetes.io/instance=platform9-webapp01
-Annotations:            deployment.kubernetes.io/revision: 2
+Annotations:            deployment.kubernetes.io/revision: 1
                         kubectl.kubernetes.io/last-applied-configuration:
                           {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"platform9-weba...
-Selector:               app=p9-react-app
+Selector:               app=platform9-webapp
 Replicas:               2 desired | 2 updated | 2 total | 2 available | 0 unavailable
 StrategyType:           RollingUpdate
 MinReadySeconds:        0
 RollingUpdateStrategy:  1 max unavailable, 1 max surge
 Pod Template:
-  Labels:  app=p9-react-app
-**           version=0.9.0**
+  Labels:  app=platform9-webapp
+           version=0.9.0
   Containers:
-   p9-react-app:
-    Image:        stevenduckaert/cicd
+   platform9-webapp:
+    Image:        stevenduckaert/koolkubernetes
     Port:         80/TCP
     Host Port:    0/TCP
     Environment:  <none>
@@ -277,13 +277,13 @@ Conditions:
   ----           ------  ------
   Available      True    MinimumReplicasAvailable
 OldReplicaSets:  <none>
-NewReplicaSet:   p9-react-app-6f56cd8cd5 (2/2 replicas created)
+NewReplicaSet:   platform9-webapp-6665465fdf (2/2 replicas created)
 Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  15m   deployment-controller  Scaled up replica set p9-react-app-6f74fd675b to 2
-  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set p9-react-app-6f56cd8cd5 to 1
-  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled down replica set p9-react-app-6f74fd675b to 1
-  Normal  ScalingReplicaSet  99s   deployment-controller  Scaled up replica set p9-react-app-6f56cd8cd5 to 2
-  Normal  ScalingReplicaSet  96s   deployment-controller  Scaled down replica set p9-react-app-6f74fd675b to 0```
+  Normal  ScalingReplicaSet  103s  deployment-controller  Scaled up replica set platform9-webapp-6665465fdf to 2
+```
 
+![gitopsdemo-newversionui](images/gitopsdemo-newversionui.png)
+
+![gitopsdemo-argocd_ok](images/gitopsdemo-argocd_ok.png)
