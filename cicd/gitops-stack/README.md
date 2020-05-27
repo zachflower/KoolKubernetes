@@ -52,11 +52,11 @@ While the configuration of CircleCI is super intuitive and you can find detailed
 ![circleci-addconfig](images/circleci-addconfig.png)
 ![circleci-startbuilding2](images/circleci-startbuilding2.png)
 
-You will see that a pipeline job will kick off automatically which will probably fail due to a `missing environment variable`
+You will see that a pipeline job will kick off automatically which will probably fail due to some `missing environment variables`
 ![circleci-error](images/circleci-error.png)
-To resolve this you need to add `DOCKER_LOGIN` as an environment variable by going to **Project Settings** - **Environment Variables** - **Add Environment Variable**
+To resolve this you need to add `DOCKER_LOGIN` and `DOCKER_PASSWORD` as environment variables by going to **Project Settings** - **Environment Variables** - **Add Environment Variable**
 ![circleci-environmentvariable](images/circleci-environmentvariable.png)
-The value is your Docker user/org name
+The value is your Docker user/org name and password
 ![circleci-environmentvariable2](images/circleci-environmentvariable2.png)
 
 Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine. In your Docker repo you will also find the image that we can use for the CD part of the demo.
