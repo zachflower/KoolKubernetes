@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   run_tests:
-    working_directory: ~/react-app
+    working_directory: ~/gitops-stack/webapp01
     docker:
       - image: circleci/node:10.16.3
     steps:
@@ -32,6 +32,8 @@ workflows:
     jobs:
       - run_tests
       - docker/publish:
+          # complete the image setting with your docker details. For example:
+            # image: stevenduckaert/$CIRCLE_PROJECT_REPONAME
           image: stevenduckaert/$CIRCLE_PROJECT_REPONAME
           tag: latest
           dockerfile: dockerfile
