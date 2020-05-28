@@ -91,7 +91,10 @@ Authorization callback URL → https://dex-pf9.example.com:32000/callback
 
 3. Once the app has been created, you'll see a screen which shows Client ID and Client Secret. Keep this handy as it will be needed later.
 
+
 ![Google_project](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/github_app.png)
+
+
 
 #### GoogleAuth
 
@@ -100,19 +103,31 @@ Authorization callback URL → https://dex-pf9.example.com:32000/callback
 
 2. Select an existing project or create a new one if you don't have an existing project
 
+
 ![Google_project](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/Google_project.png)
+
+
 
 3. After clicking on the project, select Credentials pane in the left pane
 
+
 ![Google_credentials](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/Credentials.png)
+
+
 
 4. Create Credentials  by Clicking on "CREATE CREDENTIALS" in the top corner and select "OAuth Client ID"
 
+
 ![Create_credentials](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/create_credentials.png)
+
+
 
 5. Select the application type as "Web Application", give it an appropriate name.
 
+
 ![Create_oauth](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/Create_oauth.png)
+
+
 
 Also, add the following entries -
 
@@ -124,7 +139,10 @@ Authorized redirect URIs: https://dex-pf9.example.com:32000/callback
 (Please note that this is the URL where the Identity Provider(Google/GitHub) will redirect to and it should be resolvable from where you're going to access kubectl)
 
 6. After Clicking Create, you'll be provided with a Client ID and Client Secret. Keep this handy as it will be needed later.
+
 ![Client_creation](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/Client_creation.png)
+
+
 
 
 ### Configuring the Identity provider Secrets
