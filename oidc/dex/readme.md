@@ -91,7 +91,10 @@ Authorization callback URL → https://dex-pf9.example.com:32000/callback
 
 3. Once the app has been created, you'll see a screen which shows Client ID and Client Secret. Keep this handy as it will be needed later.
 
+
 ![Google_project](https://github.com/platform9/KoolKubernetes/blob/master/oidc/dex/images/github_app.png)
+
+
 
 #### GoogleAuth
 
