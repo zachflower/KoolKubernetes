@@ -1,0 +1,45 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@1.0.1
+
+jobs:
+  run_tests:
+    working_directory: ~/gitops-stack/webapp01
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: npm-install
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      #- run:
+      #    name: test
+      #    command: npm test
+  
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - run_tests
+      - docker/publish:
+          # complete the image setting with your docker details. For example:
+            # image: stevenduckaert/$CIRCLE_PROJECT_REPONAME
+          image: stevenduckaert/koolkubernetes
+          tag: latest
+          dockerfile: dockerfile
+          requires:
+            - run_tests
+          filters:
+            branches:
+              only: 
+                - master

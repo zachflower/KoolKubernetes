@@ -3,7 +3,7 @@
 Jenkins is a well known, widely adopted Continuous Integration platform in enterprises. 
 
 ## Deployment of Jenkins on one of your Platform9 Managed Kubernetes clusters
-Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided here has Openjdk8, Maven, Go and NodeJS preinstalled with commonly used plugins. It can be further customized once Jenkins is up and running.
+Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided here has Openjdk8, Maven, Go and NodeJS preinstalled with commonly used plugins. It can be further customized once Jenkins is up and running. Ensure that bare metal cluster has metallb load-balancer pre configured before deploying jenkins. It is also required for exposing the NodeJS that will get deployed with Jenkins pipeline.
 
 ## Jenkins configuration
 Before deploying Jenkins label one node with a specific key value pair so that Jenkins pod gets scheduled on this node. 
@@ -31,7 +31,7 @@ Storing DockerHub username and password of your DockerHub repository into Jenkin
 
 ![add-cred-dhub](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred_dhub.png)
 
-Similarly add credential for GitHub account. Here set ID as 'GitHub'. Once both dockerhub and GitHub credentials are in place they can be seen as below:
+Similarly add credential for GitHub account. For github account set the ID as 'GitHub'. Adding github credentials is optional. Once both dockerhub and GitHub credentials are in place they can be seen as below:
 
 ![add-cred](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/add_cred.png)
 
