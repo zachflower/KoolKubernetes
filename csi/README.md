@@ -6,7 +6,7 @@ Rook turns distributed storage systems into self-managing, self-scaling, self-he
 2. Each worker node should have at least three free disks attached to it
 3. Metallb loadbalancer configured on bare metal cluster
 
-# Deploying the rook, ceph yaml files in sequence of thier numbering:
+# Deploying the rook, ceph on kubernetes:
 
 Clone the Kool Kubernetes repository on any machine from where the kubectl can deploy json manifests to your kubernetes cluster.
 
