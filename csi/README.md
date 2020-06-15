@@ -107,6 +107,11 @@ rook-ceph-mon-d            ClusterIP      10.21.59.17     <none>           6789/
 
 Note that due to a self signed SSL certificate used in rook dashboard it may not open in chrome.
 
+The dashboard username is 'admin' and its password can be extracted from its service account as follows:
+```bash
+$ kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}"|base64 --decode
+```
+
 Create the storage class
 ```bash
 $ kubectl apply -f 5-storageclass.yaml
