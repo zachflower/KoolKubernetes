@@ -91,7 +91,7 @@ $ kubectl apply -f 4-dashboard-service.yaml
 service/dashboard created
 ```
 
-Verify dashboard service gets an IP from the loadbalancer
+Verify dashboard service gets an IP from the loadbalancer.
 ```bash
 $ kubectl get services -n rook-ceph
 NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)             AGE
@@ -104,6 +104,8 @@ rook-ceph-mon-a            ClusterIP      10.21.18.145    <none>           6789/
 rook-ceph-mon-b            ClusterIP      10.21.204.227   <none>           6789/TCP,3300/TCP   26m
 rook-ceph-mon-d            ClusterIP      10.21.59.17     <none>           6789/TCP,3300/TCP   21m
 ```
+
+Note that due to a self signed SSL certificate used in rook dashboard it may not open in chrome.
 
 Create the storage class
 ```bash
