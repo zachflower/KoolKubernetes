@@ -97,7 +97,7 @@ $ kubectl get services -n rook-ceph
 NAME                       TYPE           CLUSTER-IP      EXTERNAL-IP      PORT(S)             AGE
 csi-cephfsplugin-metrics   ClusterIP      10.21.229.217   <none>           8080/TCP,8081/TCP   27m
 csi-rbdplugin-metrics      ClusterIP      10.21.214.248   <none>           8080/TCP,8081/TCP   27m
-dashboard                  LoadBalancer   10.21.22.58     10.128.231.206   443:30990/TCP       12s
+dashboard                  LoadBalancer   10.21.22.58     10.12.3.206      443:30990/TCP       12s
 rook-ceph-mgr              ClusterIP      10.21.120.228   <none>           9283/TCP            22m
 rook-ceph-mgr-dashboard    ClusterIP      10.21.40.163    <none>           8443/TCP            22m
 rook-ceph-mon-a            ClusterIP      10.21.18.145    <none>           6789/TCP,3300/TCP   26m
