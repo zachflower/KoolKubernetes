@@ -1,4 +1,5 @@
-# Step by Step instructions to deploy a GitOps Ready Stack + Demo NodeJS App
+# Deploy a NodeJS App to using CircleCI + ArgoCD
+
 For this GitOps stack we will be leveraging a variety of tools:
  - CircleCI
  - ArgoCD
