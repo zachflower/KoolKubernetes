@@ -125,7 +125,7 @@ Then, access the application using -  http://localhost:8080/
 (NOTE: If you cannot access browser from the machine you are running the above kubectl command, you can make use the --address switch so you can reach it from your local machine and access it via a browser. The complete command is -
 ```bash
  kubectl -n emojivoto port-forward svc/web-svc 8080:80 --address <IP_address>
- ```   
+ ```
 
 
  You might notice that  that some parts of emojivoto app are broken. this is intentional and you can debug it further by checking out this [link](https://linkerd.io/2/debugging-an-app/).

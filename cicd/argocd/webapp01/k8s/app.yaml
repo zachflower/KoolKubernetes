@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: platform9-webapp
-          # image: repo_account/repo_name  
+          # image: repo_account/repo_name
           image: stevenduckaert/koolkubernetes
           imagePullPolicy: Always
           ports:

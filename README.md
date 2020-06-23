@@ -4,27 +4,34 @@
 
 ### CI/CD
 
-- ArgoCD
-- Jenkins
+- [ArgoCD](/cicd/argocd)
+- [Jenkins](/cicd/jenkins)
 
 ### Storage
 
-- Rook
+- [Rook](/csi/rook)
 
 ### Monitoring
 
-- AlertManager
+- [AlertManager](/monitoring/alertmanager)
 
 ### Identity Management
 
-- Dex
-- KeyCloak
+- [Dex](/oidc/dex)
+- [KeyCloak](/oidc/keycloak)
 
-### Virtualization
+### Service Mesh
 
-- KubeVirt
+- [Linkerd](/service-mesh/linkerd)
+
+### Miscellaneous
+
+- [KubeVirt](miscellaneous/kubevirt)
 
 ## Contributing
 
-## License
+Please read through the [contributing guidelines](/.github/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
+## Copyright and License
+
+Code and documentation copyright 2020 Platform9. Code released under the [MIT license](LICENSE.md).

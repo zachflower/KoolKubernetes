@@ -21,7 +21,7 @@ While the process is very straightforward, you can find the documentation to cre
 
 ## Example NodeJS app
 In this setup we will be showcasing the instructions for a NodeJS application which is based upon the default react-app. This repo also contains the required files you'll use later on for CircleCI (eg. `.circleci`, `dockerfile`, etc.)
-Clone the KoolKubernetes repo on GitHub, and cd into `cicd/gitops-stack/webapp01`. When you issue `npm install` followed with `npm start`, the application should open up in a browser. 
+Clone the KoolKubernetes repo on GitHub, and cd into `cicd/gitops-stack/webapp01`. When you issue `npm install` followed with `npm start`, the application should open up in a browser.
 ```Compiled successfully!
 
 You can now view react-app01 in the browser.
@@ -35,7 +35,7 @@ To create a production build, use npm run build.
 ```
 ![webapp](images/webapp01.png)
 
-There are three main files: 
+There are three main files:
 The index.html file is the template that will be sent to the browser, while the code for the application reside in src/App.js. In package.json you can find some parameters of the app. The most useful parameters in this file are the `version` and `name` parameters.
 
 
@@ -60,7 +60,7 @@ To resolve this you need to add `DOCKER_LOGIN` and `DOCKER_PASSWORD` as environm
 The value is your Docker user/org name and password
 ![circleci-environmentvariable2](images/circleci-environmentvariable2.png)
 
-Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine. 
+Next time you commit a change to the followed repository, you will notice that a new pipeline job is triggered which should complete fine.
 ![circleci-success](images/circleci-success.png)
 In your Docker repo you will also find the image that we can use for the CD part of the demo.
 ![circleci-dockerhub](images/circleci-dockerhub.png)
@@ -113,7 +113,7 @@ deployment.apps/argocd-server created
 `
 
 ### Install the Argo CD CLI on your computer.
-For Mac you can use brew: 
+For Mac you can use brew:
 ```bash
 brew tap argoproj/tap
 brew install argoproj/tap/argocd
@@ -155,13 +155,13 @@ Password:
 Context '127.0.0.1:8080' updated
 `
 ```bash
-argocd account update-password   
+argocd account update-password
 ```
 ```
 Enter current password:
 Enter new password:
 Confirm new password:
-Password updated      
+Password updated
 ```
 
 ### *Optional*: Add  your remote Kubernetes cluster(s) to ArgoCD
@@ -220,7 +220,7 @@ spec:
     automated: null
 ```
 
-Since the sync policy in the above example is set to `manual` you will need to select the Synchronize button. 
+Since the sync policy in the above example is set to `manual` you will need to select the Synchronize button.
 ![argocd-appadded](images/argocd-appadded.png)
 ![argocd-apptobesynced](images/argocd-apptobesynced.png)
 
@@ -231,7 +231,7 @@ Once synchronized you will be able to see that the pods are deployed according t
 Kubectl output:
 
 ```
-kubectl get pods -n webapp01                                                                                      
+kubectl get pods -n webapp01
 NAME                            READY   STATUS    RESTARTS   AGE
 p9-react-app-6f74fd675b-tm9cp   1/1     Running   0          27s
 p9-react-app-6f74fd675b-wb88x   1/1     Running   0          27s
@@ -249,7 +249,7 @@ If you now commit/push these changes into your Git repo, then you'll notice:
 
 Output of the kubectl describe deployment command - version label should be updated. You can of course also connect to the app itself via it's service and checkout the version at the bottom of the UI.
 
-```kubectl describe deployment platform9-webapp -n webapp01 
+```kubectl describe deployment platform9-webapp -n webapp01
 Name:                   platform9-webapp
 Namespace:              webapp01
 CreationTimestamp:      Wed, 27 May 2020 14:25:38 +0200

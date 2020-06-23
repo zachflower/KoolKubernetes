@@ -18,7 +18,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Activate Your Platform9 Managed Kubernetes Free Tier
-        </a>      
+        </a>
       </header>
       <p>
           The current version of this app is: {packageJson.version}
