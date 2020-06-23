@@ -1,4 +1,4 @@
-# Integrating Dex for Identity Management with PMK/PMKFT
+# Kubernets + Dex: Integrating Dex for Identity Management on Kubernetes
 
 Dex is an open source OIDC (OpenID Connect) authentication service launched *by CoreOS*. This service provides an essential abstraction layer between other *services* (e.g. an app, microservice or a Kubernetes cluster itself) and sources *of identity such as LDAP, Google, Linkedin, etc.*
 
@@ -209,7 +209,7 @@ If you are following this example, it would be -
 ```
 
 
-2. Stop the pf9-kube process and start it using the following commands on the master servers as it will restart the api-server component needed for the above flags to take effect.  
+2. Stop the pf9-kube process and start it using the following commands on the master servers as it will restart the api-server component needed for the above flags to take effect.
 
 ```bash
 /etc/init.d/pf9-kube stop
@@ -265,7 +265,7 @@ kubectl krew install oidc-login
 
 I’ll be proceeding with the Linux Machine example going forward.
 
-Run the following command to ensure that OIDC authentication via KeyCloak is successful.  
+Run the following command to ensure that OIDC authentication via KeyCloak is successful.
 
 ```bash
 ./kubectl-oidc_login setup   --oidc-issuer-url=https://<keycloak-interface_IP>:8443/auth/realms/<realm_name>   --oidc-client-id=<client_ID>   --oidc-client-secret=<secret noted earlier in Keycloak>--insecure-skip-tls-verify --grant-type password

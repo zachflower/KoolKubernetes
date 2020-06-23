@@ -1,14 +1,14 @@
-# Jenkins deployment on Platform9 Managed Kubernetes Freedom Plan
+# Kubernetes + Jenkins: Deploying a NodeJS Application to Kubernetes Using Jenkins
 
-Jenkins is a well known, widely adopted Continuous Integration platform in enterprises. 
+Jenkins is a well known, widely adopted Continuous Integration platform in enterprises.
 
 ## Deployment of Jenkins on one of your Platform9 Managed Kubernetes clusters
 Here we are going to deploy Jenkins on top of platform9 managed kubernetes freedom tier. The Jenkins docker image provided here has Openjdk8, Maven, Go and NodeJS preinstalled with commonly used plugins. It can be further customized once Jenkins is up and running. Ensure that bare metal cluster has metallb load-balancer pre configured before deploying jenkins. It is also required for exposing the NodeJS that will get deployed with Jenkins pipeline.
 
 ## Jenkins configuration
-Before deploying Jenkins label one node with a specific key value pair so that Jenkins pod gets scheduled on this node. 
+Before deploying Jenkins label one node with a specific key value pair so that Jenkins pod gets scheduled on this node.
 
-Select the node with enough resources for Jenkins to run on. Label it in the following manner. 
+Select the node with enough resources for Jenkins to run on. Label it in the following manner.
 
 ```bash
 $ kubectl label nodes <node-name> jenkins=allow
@@ -42,7 +42,7 @@ Set your dockerhub registry location as environment variable by clicking Jenkins
 ![add-env](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/dhub_loc.png)
 
 ## Run Pipeline
-Now we are all set to configure pipeline in Jenkins before it can be run. The pipeline is already defined in the repository. it just need to be configured to run with above credentials and image repository. For this click ‘New Item’ on the home page,  provide some name to this pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK to move to next page. 
+Now we are all set to configure pipeline in Jenkins before it can be run. The pipeline is already defined in the repository. it just need to be configured to run with above credentials and image repository. For this click ‘New Item’ on the home page,  provide some name to this pipeline and select ‘Multibranch Pipeline’ from the available list of options. Click OK to move to next page.
 
 ![create](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/create.png)
 
@@ -50,11 +50,11 @@ On this page under 'Branch Source' click Add source. Set 'GitHub' in credentials
 
 ![source](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/source.png)
 
-Further scroll down on the page to 'Build Configuration' and set the script path to 'cicd/jenkins/webapp01/Jenkinsfile'. Finally press Save at the bottom to finish configuring. 
+Further scroll down on the page to 'Build Configuration' and set the script path to 'cicd/jenkins/webapp01/Jenkinsfile'. Finally press Save at the bottom to finish configuring.
 
 ![jenkinsfile](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/jenkinsfile_path.png)
 
-The Pipeline will execute immediately after you click 'Save'.  
+The Pipeline will execute immediately after you click 'Save'.
 
 ![p-start](https://github.com/platform9/KoolKubernetes/blob/master/cicd/jenkins/images/p_start.png)
 

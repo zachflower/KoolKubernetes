@@ -1,4 +1,4 @@
-# Deploy a NodeJS App to using CircleCI + ArgoCD
+# Kubernetes + ArgoCD: Deploy a NodeJS App to Kubernetes Using CircleCI and ArgoCD
 
 For this GitOps stack we will be leveraging a variety of tools:
  - CircleCI

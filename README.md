@@ -4,29 +4,29 @@
 
 ### CI/CD
 
-- [ArgoCD](/cicd/argocd)
-- [Jenkins](/cicd/jenkins)
+- [Kubernetes + ArgoCD](/cicd/argocd): Deploy a NodeJS App to using CircleCI and ArgoCD
+- [Kubernetes + Jenkins](/cicd/jenkins)
 
 ### Storage
 
-- [Rook](/csi/rook)
+- [Kubernetes + Rook](/csi/rook)
 
 ### Monitoring
 
-- [AlertManager](/monitoring/alertmanager)
+- [Kubernetes + AlertManager](/monitoring/alertmanager)
 
 ### Identity Management
 
-- [Dex](/oidc/dex)
-- [KeyCloak](/oidc/keycloak)
+- [Kubernetes + Dex](/oidc/dex)
+- [Kubernetes + KeyCloak](/oidc/keycloak)
 
 ### Service Mesh
 
-- [Linkerd](/service-mesh/linkerd)
+- [Kubernetes + Linkerd](/service-mesh/linkerd)
 
 ### Miscellaneous
 
-- [KubeVirt](miscellaneous/kubevirt)
+- [Kubernetes + KubeVirt](miscellaneous/kubevirt)
 
 ## Contributing
 

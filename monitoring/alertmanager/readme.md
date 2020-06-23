@@ -1,4 +1,4 @@
-# Slack & Prometheus AlertManager integration
+# Kubernetes + AlertManager: Receive Kubernetes Alerts in Slack Using AlertManager and Prometheus
 
 After enabling Prometheus in Platform9 Managed Kubernetes, you will see that several services are created in the pf9-monitoring namespace
 ```bash
@@ -15,7 +15,7 @@ prometheus-operated     ClusterIP   None            <none>        9090/TCP      
 sys-alertmanager        ClusterIP   10.21.55.181    <none>        9093/TCP                     3d5h
 sys-prometheus          ClusterIP   10.21.155.239   <none>        9090/TCP                     3d5h
 sysalert-4pu0u5me       ClusterIP   10.21.174.71    <none>        9093/TCP                     3d5h
-system-yc1jobvw         ClusterIP   10.21.39.200    <none>        9090/TCP    
+system-yc1jobvw         ClusterIP   10.21.39.200    <none>        9090/TCP
 ```
 You can easily connect to the Prometheus UI by leveraging the port-forwarding mechanism in kubectl. Once you issued the below command, you will be able to connect to the Prometheus UI from your local machine.
 
@@ -38,7 +38,7 @@ The steps we need to follow in order to integrate AlertManager with Slack are:
 I created a dedicated Slack channel named: alerts-pmk-freedom
 
 ## Grab the Slack WebHook URL
-In the Slack administration settings you can create an incoming WebHook. This will generate a WebHook URL which you will need in the AlertManager template. 
+In the Slack administration settings you can create an incoming WebHook. This will generate a WebHook URL which you will need in the AlertManager template.
 
 ![slack](https://github.com/platform9/pmk-k8-yaml/blob/master/monitoring/alertmanager/screenshots/Slack.png)
 

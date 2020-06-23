@@ -1,4 +1,4 @@
-# Implementing Linkerd as ServiceMesh for PMK/PMKFT
+# Kubernetes + Linkerd: Implementing Linkerd as ServiceMesh on Kubernetes
 
 Installing Linkerd as a ServiceMesh in a Kubernetes cluster is fairly straightforward because of its architecture and great documentation.
 
