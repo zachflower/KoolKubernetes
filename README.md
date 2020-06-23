@@ -11,10 +11,6 @@
 
 - Rook
 
-### Virtualization
-
-- KubeVirt
-
 ### Monitoring
 
 - AlertManager
@@ -23,6 +19,10 @@
 
 - Dex
 - KeyCloak
+
+### Virtualization
+
+- KubeVirt
 
 ## Contributing
 
